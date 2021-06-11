@@ -75,18 +75,18 @@
                             </thead>
                             <tbody>
                                 <?php
-                                    $jumlahAlt = count($data['tp']['rankTp']);
+                                    $jumlahAlt = count($data['alt']);
                                     $lolos = 50 * $jumlahAlt / 100;
                                     
                                     $i=1;
-                                    foreach($data['tp']['rankTp'] as $key => $value) { 
+                                    foreach($data['wp']['rankWp'] as $key => $value) { 
                                 ?>
                                     <tr>
                                         <th>
                                             <?= 'A'.$key; ?>
                                         </th>
                                         <td>
-                                            <?php foreach ($data['tp']['users'] as $n => $alt) {
+                                            <?php foreach ($data['wp']['users'] as $n => $alt) {
                                                 if ($n == $key) {
                                                     echo $alt;
                                                 }

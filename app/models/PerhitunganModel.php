@@ -2,6 +2,15 @@
 
 class PerhitunganModel{
 
+    // private $tbl_kriteria = 'kriteria';
+    private $tbl_subKriteria = 'subkriteria';
+    private $tbl_pivotKtr = 'pivot_ktr_sub';
+    private $db;
+
+    public function __construct()
+    {
+        $this->db = new Database;
+    }
 
     public function hitungWP($dataWp)
     {
@@ -13,51 +22,48 @@ class PerhitunganModel{
 
         $X = $this->getSubBobot($dataWp['alt'], $dataWp['sub']);
 
-        // Normalisasi
+        // Normalisasi matriks
         for ($j=1; $j <= 12; $j++) { 
-            for ($i=1; $i <= $alternatif; $i++) { 
-                $pow[] = pow($X['C'.$j.'-'.$i], 2);
+            $tmp = $this->getSubKriteriaByIdKriteria($j);
+            foreach($tmp as $value) {
+                $max[] = $value['bobot_sub'];
             }
-            $X['X'.$j] = array_sum($pow);
-            $X['X'.$j] = sqrt($X['X'.$j]);
-            unset($pow);
+
+            $max = max($max);
+            for ($i=1; $i <= $alternatif; $i++) { 
+                $data["A$j-$i"] = $X["C$j-$i"] / $max;
+            }
+            unset($max);
         }
 
-        // Ternormalisasi terbobot
-        for ($j=1; $j <= 12; $j++) { 
-            for ($i=1; $i <= $alternatif; $i++) { 
-                $R['R'.$j.'-'.$i] = $X['C'.$j.'-'.$i] / $X['X'.$j];
-                $ideal[] = $V['V'.$j.'-'.$i] = $bobotKtr[$j-1] * $R['R'.$j.'-'.$i];
-            }
-
-            $Amax[] = max($ideal);
-            $Amin[] = min($ideal);
-            unset($ideal);
-
-            for ($d=1; $d <= $alternatif; $d++) {
-                $dmax['P'.$j.'-'.$d] = pow($Amax[$j-1] - $V['V'.$j.'-'.$d], 2);
-                $dmin['P'.$j.'-'.$d] = pow($V['V'.$j.'-'.$d] - $Amin[$j-1], 2);
-            }
-        }
-
-
-        /*==================== A1 [D+] ====================*/
+        // Menghitung Nilai Bobot Preferensi (Qi)
+        // Tahap 1
         for ($i=1; $i <= $alternatif; $i++) { 
-            for ($j=1; $j <= 12; $j++) {
-                $dp[] = $dmax['P'.$j.'-'.$i]; 
-                $dm[] = $dmin['P'.$j.'-'.$i]; 
+            for ($c=1; $c <= 12; $c++) { 
+                $dikali["$c-$i"] = $data["A$c-$i"] * $bobotKtr[$c-1];
+                $ditambah[] = $dikali["$c-$i"];
             }
-            $data['DP'.$i] = array_sum($dp);
-            $data['DP'.$i] = sqrt($data['DP'.$i]);
-            unset($dp);
 
-            $data['DM'.$i] = array_sum($dm);
-            $data['DM'.$i] = sqrt($data['DM'.$i]);
-            unset($dm);
+            $kali5 = array_sum($ditambah);
+            $data["QP1-$i"] = 0.5 * $kali5;
+            unset($ditambah);
         }
         
+        // Tahap 2
+        unset($dikali);
         for ($i=1; $i <= $alternatif; $i++) { 
-            $rank[$i] = $data['DM'.$i] / ($data['DM'.$i] + $data['DP'.$i]);
+            $dikali = 1;
+            for ($c=1; $c <= 12; $c++) { 
+                $dipangkat["Q$c-$i"] = pow($data["A$c-$i"], $bobotKtr[$c-1]);
+                $dikali *= $dipangkat["Q$c-$i"];
+            }
+            $data["QP2-$i"] = 0.5 * $dikali;
+        }
+
+        // Tahap 3
+        // Hasil Perhitungan
+        for ($i=1; $i <= $alternatif; $i++) { 
+            $rank[$i] = $data["QP3-$i"] = $data["QP1-$i"] + $data["QP2-$i"];
         }
 
         $u=1;
@@ -65,13 +71,13 @@ class PerhitunganModel{
             $users[$u] = $alt['nama'];
             $u++;
         }
-
-        $data['X'] = $R;
-        $data['V'] = $V;
-
+        
         arsort($rank);
         $data['rankWp'] = $rank;
         $data['users'] = $users;
+        // $data['X'] = $A;
+        // $data['V'] = $V;
+
 
         return $data;
     }
@@ -148,7 +154,14 @@ class PerhitunganModel{
             }
             $k++;
         }
-
         return $key;
+    }
+
+    public function getSubKriteriaByIdKriteria($id)
+    {
+        $query = "SELECT bobot_sub FROM $this->tbl_subKriteria JOIN $this->tbl_pivotKtr USING(id_sub) WHERE id_ktr=:id";
+        $this->db->query($query);
+        $this->db->bind('id', $id);
+        return $this->db->resultSet();
     }
 }
