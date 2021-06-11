@@ -1,5 +1,5 @@
 ## Sistem Pendukung Keputusan
 
-## Penentu Keluarga Harapan mengguanakan Metode **TOPSIS & WP**
+## Bantuan Pangan Non Tunai [`Metode WASPAS & VIKOR`]
 
 > Lutfhi
