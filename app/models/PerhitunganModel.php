@@ -2,7 +2,6 @@
 
 class PerhitunganModel{
 
-    // private $tbl_kriteria = 'kriteria';
     private $tbl_subKriteria = 'subkriteria';
     private $tbl_pivotKtr = 'pivot_ktr_sub';
     private $db;
@@ -17,10 +16,10 @@ class PerhitunganModel{
         // Hitung jumlah alternatif
         $alternatif = count($dataWp['alt']);
 
-        // Get All bobot sub-kriteria (matrix keputusan)
+        // Ambil semua bobot sub-kriteria (matrix keputusan)
         $X = $this->getSubBobot($dataWp['alt'], $dataWp['sub']);
 
-        // Get bobot kriteria
+        // Ambil bobot kriteria
         foreach ($dataWp['nilai'] as $n) {
             $bobotKtr[] = $n['nilai_bk'];
         }
@@ -72,7 +71,7 @@ class PerhitunganModel{
             $rank[$i] = $data["QP3-$i"] = $data["QP1-$i"] + $data["QP2-$i"];
         }
 
-        // Get All User/Alternatif
+        // Ambil semua User/Alternatif
         $data['users'] = $this->getAlternatifName($dataWp);
         
         // Sorting nilai WASPAS (ranking)
@@ -88,10 +87,10 @@ class PerhitunganModel{
         // Hitung jumlah alternatif
         $alternatif = count($dataVk['alt']);
 
-        // Get All bobot sub-kriteria (matrix keputusan)
+        // Ambil semua bobot sub-kriteria (matrix keputusan)
         $X = $this->getSubBobot($dataVk['alt'], $dataVk['sub']);
         
-        // Get bobot kriteria from ...? ^lupa
+        // Ambil bobot kriteria dari ...? ^lupa
         foreach ($dataVk['nilai'] as $n) {
             $nilai[] = $n['nilai_bk'];
         }
@@ -135,14 +134,25 @@ class PerhitunganModel{
         }
 
 
-        /*
-            TODO: Menghitung Nilai Vikor
-            ___         ___
-              \\_(.^.)_//
-        */
+        // Menghitung Nilai Vikor
+        $_s_max_kurang_min = max($S) - min($S);
+        $_r_max_kurang_min = max($R) - min($R);
+        $_rV = 1 - 0.5;
+
+        for ($j=1; $j <= $alternatif; $j++) {
+            $_s_kurang_min = $S[$j-1] - min($S);
+            $pembagian_s = $_s_kurang_min / $_s_max_kurang_min;
+            $_S = 0.5 * $pembagian_s;
+
+            $_r_kurang_min = $R[$j-1] - min($R);
+            $pembagian_r = $_r_kurang_min / $_r_max_kurang_min;
+            $_R = $_rV * $pembagian_r;
+
+            $Q[$j] = $_S + $_R;
+        }
 
 
-        // Get All User/Alternatif with name
+        // Ambil semua User/Alternatif hanya nama
         $u=1;
         foreach ($dataVk['alt'] as $alt) {
             $users[$u] = $alt['nama'];
@@ -150,9 +160,10 @@ class PerhitunganModel{
         }
 
         $data['users'] = $this->getAlternatifName($dataVk);
-
         $data["S"] = $S;
         $data["R"] = $R;
+        asort($Q);
+        $data["Q"] = $Q;
 
         return $data;
     }
