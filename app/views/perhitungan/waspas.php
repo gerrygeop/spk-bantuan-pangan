@@ -1,6 +1,4 @@
-<?php
-    $jmlAlternatif = count($data['alt']);
-?>
+<?php $jmlAlternatif = count($data['alt']); ?>
 
 <div class="container-fluid" id="perhitungan-waspas">
 
@@ -73,7 +71,7 @@
                                 <?= substr($data['wp']["A11-$i"], 0, 6); ?>
                             </td>
                             <td class="py-2 px-3">
-                                <?= substr($data['wp']['A12-'.$i], 0, 6); ?>
+                                <?= substr($data['wp']["A12-$i"], 0, 6); ?>
                             </td>
                         </tr>
                     <?php } ?>
@@ -100,16 +98,14 @@
                     <caption>Bobot Prefrensi (Qi) Tahap 1</caption>
                     <thead>
                         <tr class="text-center">
-                            <th scope="col">Alt</th>
-                            <th scope="col">Qi</th>
+                            <th>Alt</th>
+                            <th>Qi</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php for($i = 1; $i <= $jmlAlternatif; $i++) { ?>
                             <tr class="text-center">
-                                <th>
-                                    <?= 'A' . $i; ?>
-                                </th>
+                                <th><?= 'A' . $i; ?></th>
                                 <td class="py-2 px-3">
                                     <?= substr($data['wp']["QP1-$i"], 0, 8); ?>
                                 </td>

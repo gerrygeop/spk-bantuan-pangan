@@ -9,7 +9,6 @@ class Perhitungan extends Controller {
         $bobot['nilai'] = $this->model('KriteriaModel')->getNilaiKriteria();
 
         $data['wp'] = $this->model('PerhitunganModel')->hitungWP($bobot);
-        $data['vk'] = $this->model('PerhitunganModel')->hitungVK($bobot);
         $data['judul'] = 'Perhitungan';
         
         $this->view('templates/header', $data);
@@ -35,7 +34,6 @@ class Perhitungan extends Controller {
     {
         $data['alt'] = $bobot['alt'] = $this->model('AlternatifModel')->getAllAlternatif();
         $bobot['sub'] = $this->model('KriteriaModel')->getAllBobotSub();
-
         $bobot['nilai'] = $this->model('KriteriaModel')->getNilaiKriteria();
 
         $data['vk'] = $this->model('PerhitunganModel')->hitungVK($bobot);

@@ -14,16 +14,22 @@ class PerhitunganModel{
 
     public function hitungWP($dataWp)
     {
+        // Hitung jumlah alternatif
         $alternatif = count($dataWp['alt']);
 
+        // Get All bobot sub-kriteria (matrix keputusan)
+        $X = $this->getSubBobot($dataWp['alt'], $dataWp['sub']);
+
+        // Get bobot kriteria
         foreach ($dataWp['nilai'] as $n) {
             $bobotKtr[] = $n['nilai_bk'];
         }
 
-        $X = $this->getSubBobot($dataWp['alt'], $dataWp['sub']);
+        // Hitung jumlah kriteria
+        $jmlKriteria = count($bobotKtr);
 
         // Normalisasi matriks
-        for ($j=1; $j <= 12; $j++) { 
+        for ($j=1; $j <= $jmlKriteria; $j++) { 
             $tmp = $this->getSubKriteriaByIdKriteria($j);
             foreach($tmp as $value) {
                 $max[] = $value['bobot_sub'];
@@ -37,9 +43,9 @@ class PerhitunganModel{
         }
 
         // Menghitung Nilai Bobot Preferensi (Qi)
-        // Tahap 1
+        //* Tahap 1
         for ($i=1; $i <= $alternatif; $i++) { 
-            for ($c=1; $c <= 12; $c++) { 
+            for ($c=1; $c <= $jmlKriteria; $c++) { 
                 $dikali["$c-$i"] = $data["A$c-$i"] * $bobotKtr[$c-1];
                 $ditambah[] = $dikali["$c-$i"];
             }
@@ -49,35 +55,29 @@ class PerhitunganModel{
             unset($ditambah);
         }
         
-        // Tahap 2
+        //* Tahap 2
         unset($dikali);
         for ($i=1; $i <= $alternatif; $i++) { 
             $dikali = 1;
-            for ($c=1; $c <= 12; $c++) { 
+            for ($c=1; $c <= $jmlKriteria; $c++) { 
                 $dipangkat["Q$c-$i"] = pow($data["A$c-$i"], $bobotKtr[$c-1]);
                 $dikali *= $dipangkat["Q$c-$i"];
             }
             $data["QP2-$i"] = 0.5 * $dikali;
         }
 
-        // Tahap 3
-        // Hasil Perhitungan
+        //* Tahap 3
+        //* Hasil Perhitungan
         for ($i=1; $i <= $alternatif; $i++) { 
             $rank[$i] = $data["QP3-$i"] = $data["QP1-$i"] + $data["QP2-$i"];
         }
 
-        $u=1;
-        foreach ($dataWp['alt'] as $alt) {
-            $users[$u] = $alt['nama'];
-            $u++;
-        }
+        // Get All User/Alternatif
+        $data['users'] = $this->getAlternatifName($dataWp);
         
+        // Sorting nilai WASPAS (ranking)
         arsort($rank);
         $data['rankWp'] = $rank;
-        $data['users'] = $users;
-        // $data['X'] = $A;
-        // $data['V'] = $V;
-
 
         return $data;
     }
@@ -85,51 +85,74 @@ class PerhitunganModel{
 
     public function hitungVK($dataVk)
     {
+        // Hitung jumlah alternatif
         $alternatif = count($dataVk['alt']);
-        $C = $this->getSubBobot($dataVk['alt'], $dataVk['sub']);
+
+        // Get All bobot sub-kriteria (matrix keputusan)
+        $X = $this->getSubBobot($dataVk['alt'], $dataVk['sub']);
         
-        // Nilai dari table kriteria simpan ke variabel nilai
+        // Get bobot kriteria from ...? ^lupa
         foreach ($dataVk['nilai'] as $n) {
             $nilai[] = $n['nilai_bk'];
         }
 
-        // Matriks Normalisasi
-        for ($i=1; $i <= 12; $i++) { 
-            $w['w'.$i] = $nilai[$i-1] / array_sum($nilai);
+        // Hitung jumlah kriteria
+        $jmlKriteria = count($nilai);
+
+        // Normalisasi Matriks
+        for ($j=1; $j <= $jmlKriteria; $j++) {
+            
+            $tmp = $this->getSubKriteriaByIdKriteria($j);
+            foreach($tmp as $value) {
+                $Xj[] = $value['bobot_sub'];
+            }
+
+            $max = max($Xj);
+            $min = min($Xj);
+            for ($i=1; $i <= $alternatif; $i++) { 
+                $hasil1["$j-$i"] = $max - $X["C$j-$i"];
+                $hasil2["$j-$i"] = $max - $min;
+                $data["N$j-$i"] = $hasil1["$j-$i"] / $hasil2["$j-$i"];
+            }
+            unset($Xj);
         }
 
-        // Pangkat C1 => C11 ^ W1 => W11
-        for ($i=1; $i <= $alternatif; $i++) { 
-            for ($j=1; $j <= 12; $j++) { 
-                $p['p'.$j.'-'.$i] = pow($C['C'.$j.'-'.$i], $w['w'.$j]);
+        // Normalisasi * Bobot
+        for ($i=1; $i <= $jmlKriteria; $i++) { 
+            for ($j=1; $j <= $alternatif; $j++) { 
+                $data["A$i-$j"] = $nilai[$i-1] * $data["N$i-$j"];
             }
         }
 
-
-        // Mencari Nilai S
+        // Menghitung Nilai S dan R
         for ($i=1; $i <= $alternatif; $i++) { 
-            $S['S'.$i] = $p['p1-'.$i]*$p['p2-'.$i]*$p['p3-'.$i]*$p['p4-'.$i]*$p['p5-'.$i]*$p['p6-'.$i]*$p['p7-'.$i]*$p['p8-'.$i]*$p['p9-'.$i]*$p['p10-'.$i]*$p['p11-'.$i]*$p['p12-'.$i];
+            for ($j=1; $j <= $jmlKriteria; $j++) { 
+                $nilaiAlt[] = $data["A$j-$i"];
+            }
+            $S[] = array_sum($nilaiAlt);
+            $R[] = max($nilaiAlt);
+            unset($nilaiAlt);
         }
 
-        // Mencari Nilai V
-        for ($i=1; $i <= $alternatif; $i++) { 
-            $rank[$i] = $V['V'.$i] = $S['S'.$i] / array_sum($S);
-        }
 
+        /*
+            TODO: Menghitung Nilai Vikor
+            ___         ___
+              \\_(.^.)_//
+        */
+
+
+        // Get All User/Alternatif with name
         $u=1;
         foreach ($dataVk['alt'] as $alt) {
             $users[$u] = $alt['nama'];
             $u++;
         }
 
-        $data['W'] = $w;
-        $data['S'] = $S;
-        $data['V'] = $V;
+        $data['users'] = $this->getAlternatifName($dataVk);
 
-        arsort($rank);
-        $data['rankVk'] = $rank;
-
-        $data['users'] = $users;
+        $data["S"] = $S;
+        $data["R"] = $R;
 
         return $data;
     }
@@ -163,5 +186,15 @@ class PerhitunganModel{
         $this->db->query($query);
         $this->db->bind('id', $id);
         return $this->db->resultSet();
+    }
+
+    public function getAlternatifName($data)
+    {
+        $u=1;
+        foreach ($data['alt'] as $alt) {
+            $users[$u] = $alt['nama'];
+            $u++;
+        }
+        return $users;
     }
 }
