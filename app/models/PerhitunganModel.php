@@ -29,7 +29,7 @@ class PerhitunganModel{
 
         // Normalisasi matriks
         for ($j=1; $j <= $jmlKriteria; $j++) { 
-            $tmp = $this->getSubKriteriaByIdKriteria($j);
+            $tmp = $this->getBobotSubByIdKriteria($j);
             foreach($tmp as $value) {
                 $max[] = $value['bobot_sub'];
             }
@@ -101,7 +101,7 @@ class PerhitunganModel{
         // Normalisasi Matriks
         for ($j=1; $j <= $jmlKriteria; $j++) {
             
-            $tmp = $this->getSubKriteriaByIdKriteria($j);
+            $tmp = $this->getBobotSubByIdKriteria($j);
             foreach($tmp as $value) {
                 $Xj[] = $value['bobot_sub'];
             }
@@ -151,14 +151,6 @@ class PerhitunganModel{
             $Q[$j] = $_S + $_R;
         }
 
-
-        // Ambil semua User/Alternatif hanya nama
-        $u=1;
-        foreach ($dataVk['alt'] as $alt) {
-            $users[$u] = $alt['nama'];
-            $u++;
-        }
-
         $data['users'] = $this->getAlternatifName($dataVk);
         $data["S"] = $S;
         $data["R"] = $R;
@@ -191,7 +183,7 @@ class PerhitunganModel{
         return $key;
     }
 
-    public function getSubKriteriaByIdKriteria($id)
+    public function getBobotSubByIdKriteria($id)
     {
         $query = "SELECT bobot_sub FROM $this->tbl_subKriteria JOIN $this->tbl_pivotKtr USING(id_sub) WHERE id_ktr=:id";
         $this->db->query($query);
