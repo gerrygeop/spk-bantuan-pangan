@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Waktu pembuatan: 04 Jun 2021 pada 13.12
--- Versi server: 10.1.38-MariaDB
--- Versi PHP: 7.3.2
+-- Host: localhost:3306
+-- Generation Time: Jun 25, 2021 at 05:14 AM
+-- Server version: 5.7.24
+-- PHP Version: 7.4.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `admin`
+-- Table structure for table `admin`
 --
 
 CREATE TABLE `admin` (
@@ -35,7 +34,7 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `admin`
+-- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`id`, `username`, `password`) VALUES
@@ -45,7 +44,7 @@ INSERT INTO `admin` (`id`, `username`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `alternatif`
+-- Table structure for table `alternatif`
 --
 
 CREATE TABLE `alternatif` (
@@ -66,7 +65,7 @@ CREATE TABLE `alternatif` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `alternatif`
+-- Dumping data for table `alternatif`
 --
 
 INSERT INTO `alternatif` (`id_alt`, `nama`, `c1`, `c2`, `c3`, `c4`, `c5`, `c6`, `c7`, `c8`, `c9`, `c10`, `c11`, `c12`) VALUES
@@ -174,7 +173,7 @@ INSERT INTO `alternatif` (`id_alt`, `nama`, `c1`, `c2`, `c3`, `c4`, `c5`, `c6`, 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kriteria`
+-- Table structure for table `kriteria`
 --
 
 CREATE TABLE `kriteria` (
@@ -184,7 +183,7 @@ CREATE TABLE `kriteria` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `kriteria`
+-- Dumping data for table `kriteria`
 --
 
 INSERT INTO `kriteria` (`id_ktr`, `nama_ktr`, `nilai_bk`) VALUES
@@ -204,7 +203,7 @@ INSERT INTO `kriteria` (`id_ktr`, `nama_ktr`, `nilai_bk`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pivot_ktr_sub`
+-- Table structure for table `pivot_ktr_sub`
 --
 
 CREATE TABLE `pivot_ktr_sub` (
@@ -213,7 +212,7 @@ CREATE TABLE `pivot_ktr_sub` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `pivot_ktr_sub`
+-- Dumping data for table `pivot_ktr_sub`
 --
 
 INSERT INTO `pivot_ktr_sub` (`id_ktr`, `id_sub`) VALUES
@@ -275,148 +274,148 @@ INSERT INTO `pivot_ktr_sub` (`id_ktr`, `id_sub`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `subkriteria`
+-- Table structure for table `subkriteria`
 --
 
 CREATE TABLE `subkriteria` (
   `id_sub` int(11) NOT NULL,
   `nama_sub` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `bobot_sub` decimal NOT NULL
+  `bobot_sub` decimal(10,0) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `subkriteria`
+-- Dumping data for table `subkriteria`
 --
 
 INSERT INTO `subkriteria` (`id_sub`, `nama_sub`, `bobot_sub`) VALUES
-(1, 'Di atas 7 orang', 4),
-(2, '5 - 6 orang', 3),
-(3, '3 - 4 orang', 2),
-(4, '1 - 2 orang', 1),
-(5, 'Sewa/Kontrak', 8),
-(6, 'Menumpang', 5),
-(7, 'Milik Sendiri', 3),
-(8, 'Di atas 70 tahun', 10),
-(9, '60 - 69 tahun', 7),
-(10, 'Di bawah 60 tahun', 3),
-(11, 'Tidak Sekolah', 8),
-(12, 'SD/Sederajat', 7),
-(13, 'SMP/Sederajat', 5),
-(14, 'SMA/Sederajat', 2),
-(15, 'Perguruan Tinggi', 1),
-(16, 'Batu/Tanah', 10),
-(17, 'Kayu', 8),
-(18, 'Ulin', 6),
-(19, 'Ubin', 4),
-(20, 'Keramik', 2),
-(21, 'Anyaman Bambu/Kayu', 10),
-(22, 'Versaboard', 7),
-(23, 'Kayu', 4),
-(24, 'Tembok', 2),
-(25, 'Daunan', 10),
-(26, 'Tanah Liat', 8),
-(27, 'Seng/Metal', 6),
-(28, 'Sirap', 5),
-(29, 'Asbes', 4),
-(30, 'Beton', 3),
-(31, 'Air Hujan', 10),
-(32, 'Air Sungai', 8),
-(33, 'Air Sumur', 6),
-(34, 'Air Ledeng', 4),
-(35, 'Air Isi Ulang', 2),
-(36, 'Bukan Listrik', 10),
-(37, 'Listrik Non PLN', 7),
-(38, 'Listrik PLN', 3),
-(39, 'Kayu Bakar', 10),
-(40, 'Minyak Tanah', 8),
-(41, 'Gas 3 Kg', 6),
-(42, 'Gas > 3 Kg', 3),
-(43, 'Tidak Bekerja', 10),
-(44, 'Pemulung', 8),
-(45, 'Kuli Bangunan', 7),
-(46, 'Petani/Berkebun/Peternak', 6),
-(47, 'Pedagang', 5),
-(48, 'Jasa Pendidikan', 3),
-(49, 'Ojek Online/Non Online', 2),
-(50, 'Karyawan Swasta', 1),
-(51, 'Tidak Memiliki Aset', 4),
-(52, '1 - 2 Aset', 3),
-(53, '3 - 5 Aset', 2),
-(54, 'Di atas 6 Aset', 1);
+(1, 'Di atas 7 orang', '4'),
+(2, '5 - 6 orang', '3'),
+(3, '3 - 4 orang', '2'),
+(4, '1 - 2 orang', '1'),
+(5, 'Sewa/Kontrak', '8'),
+(6, 'Menumpang', '5'),
+(7, 'Milik Sendiri', '3'),
+(8, 'Di atas 70 tahun', '10'),
+(9, '60 - 69 tahun', '7'),
+(10, 'Di bawah 60 tahun', '3'),
+(11, 'Tidak Sekolah', '8'),
+(12, 'SD/Sederajat', '7'),
+(13, 'SMP/Sederajat', '5'),
+(14, 'SMA/Sederajat', '2'),
+(15, 'Perguruan Tinggi', '1'),
+(16, 'Batu/Tanah', '10'),
+(17, 'Kayu', '8'),
+(18, 'Ulin', '6'),
+(19, 'Ubin', '4'),
+(20, 'Keramik', '2'),
+(21, 'Anyaman Bambu/Kayu', '10'),
+(22, 'Versaboard', '7'),
+(23, 'Kayu', '4'),
+(24, 'Tembok', '2'),
+(25, 'Daunan', '10'),
+(26, 'Tanah Liat', '8'),
+(27, 'Seng/Metal', '6'),
+(28, 'Sirap', '5'),
+(29, 'Asbes', '4'),
+(30, 'Beton', '3'),
+(31, 'Air Hujan', '10'),
+(32, 'Air Sungai', '8'),
+(33, 'Air Sumur', '6'),
+(34, 'Air Ledeng', '4'),
+(35, 'Air Isi Ulang', '2'),
+(36, 'Bukan Listrik', '10'),
+(37, 'Listrik Non PLN', '7'),
+(38, 'Listrik PLN', '3'),
+(39, 'Kayu Bakar', '10'),
+(40, 'Minyak Tanah', '8'),
+(41, 'Gas 3 Kg', '6'),
+(42, 'Gas > 3 Kg', '3'),
+(43, 'Tidak Bekerja', '10'),
+(44, 'Pemulung', '8'),
+(45, 'Kuli Bangunan', '7'),
+(46, 'Petani/Berkebun/Peternak', '6'),
+(47, 'Pedagang', '5'),
+(48, 'Jasa Pendidikan', '3'),
+(49, 'Ojek Online/Non Online', '2'),
+(50, 'Karyawan Swasta', '1'),
+(51, 'Tidak Memiliki Aset', '4'),
+(52, '1 - 2 Aset', '3'),
+(53, '3 - 5 Aset', '2'),
+(54, 'Di atas 6 Aset', '1');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `admin`
+-- Indexes for table `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `alternatif`
+-- Indexes for table `alternatif`
 --
 ALTER TABLE `alternatif`
   ADD PRIMARY KEY (`id_alt`);
 
 --
--- Indeks untuk tabel `kriteria`
+-- Indexes for table `kriteria`
 --
 ALTER TABLE `kriteria`
   ADD PRIMARY KEY (`id_ktr`);
 
 --
--- Indeks untuk tabel `pivot_ktr_sub`
+-- Indexes for table `pivot_ktr_sub`
 --
 ALTER TABLE `pivot_ktr_sub`
   ADD KEY `id_ktr` (`id_ktr`) USING BTREE,
   ADD KEY `id_sub` (`id_sub`);
 
 --
--- Indeks untuk tabel `subkriteria`
+-- Indexes for table `subkriteria`
 --
 ALTER TABLE `subkriteria`
   ADD PRIMARY KEY (`id_sub`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `admin`
+-- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `alternatif`
+-- AUTO_INCREMENT for table `alternatif`
 --
 ALTER TABLE `alternatif`
   MODIFY `id_alt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
--- AUTO_INCREMENT untuk tabel `kriteria`
+-- AUTO_INCREMENT for table `kriteria`
 --
 ALTER TABLE `kriteria`
   MODIFY `id_ktr` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT untuk tabel `subkriteria`
+-- AUTO_INCREMENT for table `subkriteria`
 --
 ALTER TABLE `subkriteria`
   MODIFY `id_sub` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `pivot_ktr_sub`
+-- Constraints for table `pivot_ktr_sub`
 --
 ALTER TABLE `pivot_ktr_sub`
   ADD CONSTRAINT `pivot_ktr_sub_ibfk_1` FOREIGN KEY (`id_ktr`) REFERENCES `kriteria` (`id_ktr`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `pivot_ktr_sub_ibfk_2` FOREIGN KEY (`id_sub`) REFERENCES `subkriteria` (`id_sub`);
+  ADD CONSTRAINT `pivot_ktr_sub_ibfk_2` FOREIGN KEY (`id_sub`) REFERENCES `subkriteria` (`id_sub`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
