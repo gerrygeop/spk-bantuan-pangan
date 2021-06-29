@@ -12,9 +12,15 @@
     </nav>
 
     <div class="shadow px-4 py-3 rounded border mb-5">
-        <h4 class="text-secondary">
-            #Normalisasi Matriks
-        </h4>
+
+        <div class="d-flex justify-content-between align-items-center">
+            <h4 class="text-secondary">
+                #Normalisasi Matriks
+            </h4>
+            <a class="btn btn-outline-primary btn-sm" href="#kali-bobot">
+                Normalisasi x bobot &darr;
+            </a>
+        </div>
         
         <div class="py-2 px-3 my-3 border border-1 rounded table-responsive">
             <table class="table table-sm align-middle">
@@ -76,14 +82,20 @@
             </table>
         </div>
         <a class="btn btn-primary" href="#kali-bobot">
-            Normalisasi Matriks dikalikan dengan bobot
+            Normalisasi x bobot
         </a>
     </div>
 
     <div class="shadow px-4 py-3 rounded border mb-5" id="kali-bobot">
-        <h4 class="text-secondary">
-            #Normalisasi x Bobot
-        </h4>
+
+        <div class="d-flex justify-content-between align-items-center">
+            <h4 class="text-secondary">
+                #Normalisasi x Bobot
+            </h4>
+            <a class="btn btn-outline-primary btn-sm" href="#nilai-sr">
+                Nilai S dan R
+            </a>
+        </div>
         <div class="py-2 px-3 my-3 border border-1 rounded table-responsive">
             <table class="table table-sm align-middle">
                 <thead>
@@ -149,9 +161,15 @@
     </div>
 
     <div class="shadow px-4 py-3 rounded border mb-5" id="nilai-sr">
-        <h4 class="text-secondary">
-            #Nilai S dan R
-        </h4>
+
+        <div class="d-flex align-items-center justify-content-between">
+            <h4 class="text-secondary">
+                #Nilai S dan R
+            </h4>
+            <a class="btn btn-outline-primary btn-sm" href="#ranking-vk">
+                Lihat Ranking &darr;
+            </a>
+        </div>
 
         <div class="row gap-5">
             <div class="col-sm-12 col-md-3 my-3 border border-1 rounded table-responsive">
@@ -229,7 +247,7 @@
             </div>
         </div>
 
-        <a class="btn btn-primary" data-bs-toggle="collapse" href="#ranking-vk">
+        <a class="btn btn-primary" href="#ranking-vk">
             Lihat Ranking
         </a>
     </div>
@@ -239,8 +257,8 @@
             <h4 class="text-secondary">
                 #Ranking VIKOR
             </h4>
-            <a class="btn btn-primary" href="#perhitungan-vk">
-                &uarr;
+            <a class="btn btn-primary" href="#perhitungan-vikor">
+                Kembali &uarr;
             </a>
         </div>
 
@@ -275,7 +293,7 @@
             </table>
         </div>
         <a class="btn btn-primary" href="#perhitungan-vikor">
-            Ke atas &uarr;
+            Kembali &uarr;
         </a>
     </div>
 

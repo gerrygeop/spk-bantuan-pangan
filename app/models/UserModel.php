@@ -2,7 +2,7 @@
 
 class UserModel {
 
-    private $table = 'admin';
+    private $table = 'users';
     private $db;
 
     public function __construct()

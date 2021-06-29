@@ -14,7 +14,7 @@
             <h4 class="text-secondary">
                 #Normalisasi Matriks
             </h4>
-            <a class="btn btn-primary" href="#bobot-preferensi">
+            <a class="btn btn-outline-primary btn-sm" href="#bobot-preferensi">
                 Nilai Bobot Preferensi (Qi) &darr;
             </a>
         </div>
@@ -88,7 +88,7 @@
             <h4 class="text-secondary">
                 #Nilai Bobot Preferensi (Qi)
             </h4>
-            <a class="btn btn-primary" href="#hasil-perhitungan">
+            <a class="btn btn-outline-primary btn-sm" href="#hasil-perhitungan">
                 Lihat Ranking &darr;
             </a>
         </div>
@@ -164,7 +164,7 @@
             </div>
 
         </div>
-        <a class="btn btn-primary" data-bs-toggle="collapse" href="#hasil-perhitungan">
+        <a class="btn btn-primary" href="#hasil-perhitungan">
             Ranking
         </a>
     </div>
@@ -175,8 +175,8 @@
             <h4 class="text-secondary">
                 #Ranking WASPAS
             </h4>
-            <a class="btn btn-primary" href="#perhitungan-waspas">
-                &uarr;
+            <a class="btn btn-outline-primary btn-sm" href="#perhitungan-waspas">
+                Kembali &uarr;
             </a>
         </div>
 
@@ -211,7 +211,7 @@
             </table>
         </div>
         <a class="btn btn-primary" href="#perhitungan-waspas">
-            Ke atas &uarr;
+            Kembali &uarr;
         </a>
     </div>
 

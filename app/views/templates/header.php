@@ -23,6 +23,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
     <style>
+        .bg-teal{
+            background-color: #10B981;
+        }
+        .text-teal{
+            color: #10B981;
+        }
         .font-poppins{
             font-family: 'Poppins', sans-serif;
         }
@@ -30,36 +36,52 @@
             font-family: 'Merriweather Sans', sans-serif;
             /* font-family: 'Josefin Sans', sans-serif; */
         }
+        .cut-text{
+            max-width: 100px !important;
+            overflow: hidden !important;
+            white-space: nowrap !important;
+            text-overflow: ellipsis !important;
+        }
     </style>
 
     <title><?= $data['judul'] ?></title>
 </head>
 <body class="font-poppins">
 
-    <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-primary mb-3 py-3 shadow">
+    <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-teal mb-3 py-3 shadow">
         <div class="container">
             <a class="navbar-brand fs-4 text-light" href="<?= BASEURL; ?>/home">BPNT Samarinda</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav w-100">
-                    <a class="nav-link" href="<?= BASEURL; ?>/home">Home</a>
-                    <a class="nav-link" href="<?= BASEURL; ?>/kriteria">Kriteria</a>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= BASEURL; ?>/home">Home</a>
+                    </li>
 
-                    <?php if (isset($_SESSION['user_id'])) : ?>
-                        <a class="nav-link" href="<?= BASEURL; ?>/alternatif">Alternatif</a>
+                    <?php if ( isset($_SESSION['user_id']) ) : ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= BASEURL; ?>/kriteria">Kriteria</a>
+                        </li>
+                        <?php if ($_SESSION['user_role'] === 'superadmin') : ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?= BASEURL; ?>/alternatif">Alternatif</a>
+                            </li>
+                        <?php endif; ?>
                     <?php endif; ?>
 
-                    <a class="nav-link" href="<?= BASEURL; ?>/home/help">Help</a>
-                    
-                    <?php if (isset($_SESSION['user_id'])) : ?>
-                        <a class="nav-link btn btn-outline-info btn-sm text-uppercase px-3 ms-auto" href="<?= BASEURL; ?>/auth/logout">Logout</a>
-                    <?php else : ?>
-                        <a class="nav-link btn btn-outline-info btn-sm text-uppercase px-3 ms-auto" href="<?= BASEURL; ?>/auth">Login</a>
-                    <?php endif; ?>
-                    
-                </div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= BASEURL; ?>/home/help">Help</a>
+                    </li>
+                </ul>
+                
+                <?php if ( isset($_SESSION['user_id']) ) : ?>
+                    <a class="nav-link btn btn-light btn-sm text-dark text-uppercase px-3" href="<?= BASEURL; ?>/auth/logout">Logout</a>
+                <?php else : ?>
+                    <a class="nav-link btn btn-light btn-sm text-dark text-uppercase px-3 me-3" href="<?= BASEURL; ?>/auth">Login</a>
+                    <a class="nav-link btn btn-outline-light btn-sm text-dark text-uppercase px-3" href="<?= BASEURL; ?>/auth/register">Register</a>
+                <?php endif; ?>
             </div>
         </div>
     </nav>

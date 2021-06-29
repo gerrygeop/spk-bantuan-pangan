@@ -2,8 +2,8 @@
     header('Location: '. BASEURL .'/middleware');
 } ?>
 
-<div class="container-fluid">
-    <div class="shadow px-2 py-3 rounded border">
+<div class="">
+    <div class="py-3 rounded">
 
         <div class="row">
             <div class="col-6">
@@ -48,62 +48,62 @@
                             <td scope="row" class="col-1">
                                 <?= $alt['nama']; ?>
                             </td>
-                            <td scope="row" class="">
+                            <td scope="row" class="cut-text py-3">
                                 <?php foreach ($data['sub'] as $sub) {
                                     $alt['c1'] == $sub['id_sub'] ?  print_r($sub['nama_sub']) : 'null';
                                 } ?>
                             </td>
-                            <td scope="row" class="">
+                            <td scope="row" class="cut-text py-3">
                                 <?php foreach ($data['sub'] as $sub) {
                                     $alt['c2'] == $sub['id_sub'] ?  print_r($sub['nama_sub']) : 'null';
                                 } ?>
                             </td>
-                            <td scope="row" class="col-1">
+                            <td scope="row" class="cut-text py-3">
                                 <?php foreach ($data['sub'] as $sub) {
                                     $alt['c3'] == $sub['id_sub'] ?  print_r($sub['nama_sub']) : 'null';
                                 } ?>
                             </td>
-                            <td scope="row" class="">
+                            <td scope="row" class="cut-text py-3">
                                 <?php foreach ($data['sub'] as $sub) {
                                     $alt['c4'] == $sub['id_sub'] ?  print_r($sub['nama_sub']) : 'null';
                                 } ?>
                             </td>
-                            <td scope="row" class="">
+                            <td scope="row" class="cut-text py-3">
                                 <?php foreach ($data['sub'] as $sub) {
                                     $alt['c5'] == $sub['id_sub'] ?  print_r($sub['nama_sub']) : 'null';
                                 } ?>
                             </td>
-                            <td scope="row" class="">
+                            <td scope="row" class="cut-text py-3">
                                 <?php foreach ($data['sub'] as $sub) {
                                     $alt['c6'] == $sub['id_sub'] ?  print_r($sub['nama_sub']) : 'null';
                                 } ?>
                             </td>
-                            <td scope="row" class="col-1">
+                            <td scope="row" class="cut-text py-3">
                                 <?php foreach ($data['sub'] as $sub) {
                                     $alt['c7'] == $sub['id_sub'] ?  print_r($sub['nama_sub']) : 'null';
                                 } ?>
                             </td>
-                            <td scope="row" class="">
+                            <td scope="row" class="cut-text py-3">
                                 <?php foreach ($data['sub'] as $sub) {
                                     $alt['c8'] == $sub['id_sub'] ?  print_r($sub['nama_sub']) : 'null';
                                 } ?>
                             </td>
-                            <td scope="row" class="col-1">
+                            <td scope="row" class="cut-text py-3">
                                 <?php foreach ($data['sub'] as $sub) {
                                     $alt['c9'] == $sub['id_sub'] ?  print_r($sub['nama_sub']) : 'null';
                                 } ?>
                             </td>
-                            <td scope="row" class="col-1">
+                            <td scope="row" class="cut-text py-3">
                                 <?php foreach ($data['sub'] as $sub) {
                                     $alt['c10'] == $sub['id_sub'] ?  print_r($sub['nama_sub']) : 'null';
                                 } ?>
                             </td>
-                            <td scope="row" class="col-1">
+                            <td scope="row" class="cut-text py-3">
                                 <?php foreach ($data['sub'] as $sub) {
                                     $alt['c11'] == $sub['id_sub'] ?  print_r($sub['nama_sub']) : 'null';
                                 } ?>
                             </td>
-                            <td scope="row" class="col-1">
+                            <td scope="row" class="cut-text py-3">
                                 <?php foreach ($data['sub'] as $sub) {
                                     $alt['c12'] == $sub['id_sub'] ?  print_r($sub['nama_sub']) : 'null';
                                 } ?>

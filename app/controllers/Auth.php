@@ -22,12 +22,23 @@ class Auth extends Controller {
 
     public function registerStore()
     {
+        if (empty($_POST['username']) && empty($_POST['password'])) {
+            header('Location: ' . BASEURL . '/auth');
+            die('Isi Username dan Password');
+        }
+
+        if ( $this->model('UserModel')->findUserByUsername($_POST['username']) ) {
+            header('Location: ' . BASEURL . '/auth/register');
+            die('Username sudah ada');
+        }
+
         $_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        if ($this->model('UserModel')->register($_POST) > 0) {
+        if ( $this->model('UserModel')->register($_POST) > 0 ) {
             header('Location: ' . BASEURL . '/auth');
             exit;
         } else {
-            die('Kayaknye ada yang salah');
+            header('Location: ' . BASEURL . '/auth');
+            die('Kayaknye password salah');
         }
     }
 
@@ -35,12 +46,13 @@ class Auth extends Controller {
     {
         if (empty($_POST['username']) && empty($_POST['password'])) {
             die('Isi Username dan Password');
+            header('Location: ' . BASEURL . '/auth');
         } else {
             $loginUser = $this->model('UserModel')->loginUser($_POST['username'], $_POST['password']);
-            // die(var_dump($loginUser));
 
             if (is_null($loginUser)) {
                 die('Gagal Login');
+                header('Location: ' . BASEURL . '/auth');
             } else {
                 $this->createUserSession($loginUser);
             }
@@ -51,6 +63,7 @@ class Auth extends Controller {
     {
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['username'] = $user['username'];
+        $_SESSION['user_role'] = $user['role'];
         header('Location: '. BASEURL .'/home');
     }
 
@@ -58,7 +71,8 @@ class Auth extends Controller {
     {
         unset($_SESSION['user_id']);
         unset($_SESSION['username']);
-        unset($_SESSION);
+        unset($_SESSION['user_role']);
+        session_destroy($_SESSION);
         header('Location: '. BASEURL .'/auth');
     }
 }

@@ -12,7 +12,7 @@
                 <div class="mb-4">
                     <h4 class="text-secondary mb-0">#Pengujian Tingkat Akurasi</h4>
                     <div class="row justify-content-center px-2">
-                        <div class="col py-2 px-4 my-3 shadow border border-1 rounded table-responsive">
+                        <div class="col py-2 px-4 my-3 shadow-sm border border-1 rounded table-responsive">
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -34,7 +34,7 @@
                 <div>
                     <h4 class="text-secondary mb-0">#Uji Sensitivitas</h4>
                     <div class="row justify-content-center px-2">
-                        <div class="col py-2 px-4 my-3 shadow border border-1 rounded table-responsive">
+                        <div class="col py-2 px-4 my-3 shadow-sm border border-1 rounded table-responsive">
                             <table class="table">
                                 <caption>
                                     Berdasarkan pengujian menggunakan <b>Tingkat Akurasi</b> dan <b>Uji Sensitivitas</b> maka metode terbaik adalah metode WASPAS karena memiliki nilai pengujian yang lebih besar
@@ -47,8 +47,12 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>7,61%</td>
-                                        <td>-0,14%</td>
+                                        <td>
+                                            7,61%
+                                        </td>
+                                        <td>
+                                            -0,14%
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -61,6 +65,11 @@
 
             <div class="mb-5">
                 <h4 class="text-secondary">Ranking metode WASPAS </h4>
+                
+                <div>
+                    <a href="<?=BASEURL;?>/perhitungan/waspas" class="btn btn-warning btn-sm">Detail WASPAS</a>
+                    <a href="<?=BASEURL;?>/perhitungan/vikor" class="btn btn-warning btn-sm">Detail VIKOR</a>
+                </div>
 
                 <div class="row px-2">
 
@@ -76,7 +85,7 @@
                             <tbody>
                                 <?php
                                     $jumlahAlt = count($data['alt']);
-                                    $lolos = 50 * $jumlahAlt / 100;
+                                    $lolos = 80 * $jumlahAlt / 100;
                                     
                                     $i=1;
                                     foreach($data['wp']['rankWp'] as $key => $value) { 
@@ -115,11 +124,6 @@
                 </div>
             </div>
             
-        </div>
-
-        <div>
-            <a href="<?=BASEURL;?>/perhitungan/waspas" class="btn btn-warning">Detail WASPAS</a>
-            <a href="<?=BASEURL;?>/perhitungan/vikor" class="btn btn-warning">Detail VIKOR</a>
         </div>
 
     </div>

@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="my-5 py-4 px-4 mb-5 rounded shadow">
+    <div class="my-5 py-4 px-4 mb-5 rounded border">
         <h2 class="mb-4"><?= '#' . $data['judul']; ?></h2>
         <div class="mb-3">
             <p class="text-secondary text-sm">
@@ -20,14 +20,14 @@
         </div>
     </div>
 
-    <div class="my-5 py-4 px-3 rounded shadow">
+    <div class="my-5 py-4 px-3 rounded">
         <h2 class="mb-3">Keterangan kriteria</h2>
         <hr>
-        <div class="row row-cols-1 row-cols-md-3">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
 
             <div class="col mb-5">
-                <div class="card">
-                    <div class="card-header w-full fw-bold fs-5 bg-primary text-white">
+                <div class="card shadow-sm">
+                    <div class="card-header w-full fw-bold fs-5 bg-teal text-white">
                         <span class="badge bg-warning">C1</span> Jumlah Anggota Keluarga
                     </div>
                     <div class="card-body">
@@ -39,7 +39,7 @@
                         <?php foreach ($data['c1'] as $item) : ?>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <?= $item['nama_sub']; ?>
-                                <span class="badge bg-primary rounded-pill fw-light">bobot: <?= $item['bobot_sub'] ;?></span>
+                                <span class="badge bg-teal rounded-pill fw-light">bobot: <?= $item['bobot_sub'] ;?></span>
                             </li>
                         <?php endforeach; ?>
                     </ul>
@@ -47,8 +47,8 @@
             </div>
 
             <div class="col mb-5">
-                <div class="card">
-                    <div class="card-header w-full fw-bold fs-5 bg-primary text-white">
+                <div class="card shadow-sm">
+                    <div class="card-header w-full fw-bold fs-5 bg-teal text-white">
                         <span class="badge bg-warning">C2</span> Status Bangunan
                     </div>
                     <div class="card-body">
@@ -60,7 +60,7 @@
                         <?php foreach ($data['c2'] as $item) : ?>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <?= $item['nama_sub']; ?>
-                                <span class="badge bg-primary rounded-pill fw-light">bobot: <?= $item['bobot_sub'] ;?></span>
+                                <span class="badge bg-teal rounded-pill fw-light">bobot: <?= $item['bobot_sub'] ;?></span>
                             </li>
                         <?php endforeach; ?>
                     </ul>
@@ -68,8 +68,8 @@
             </div>
 
             <div class="col mb-5">
-                <div class="card">
-                    <div class="card-header w-full fw-bold fs-5 bg-primary text-white">
+                <div class="card shadow-sm">
+                    <div class="card-header w-full fw-bold fs-5 bg-teal text-white">
                         <span class="badge bg-warning">C3</span> Umur Kepala Keluarga
                     </div>
                     <div class="card-body">
@@ -81,7 +81,7 @@
                         <?php foreach ($data['c3'] as $item) : ?>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <?= $item['nama_sub']; ?>
-                                <span class="badge bg-primary rounded-pill fw-light">bobot: <?= $item['bobot_sub'] ;?></span>
+                                <span class="badge bg-teal rounded-pill fw-light">bobot: <?= $item['bobot_sub'] ;?></span>
                             </li>
                         <?php endforeach; ?>
                     </ul>
@@ -89,8 +89,8 @@
             </div>
 
             <div class="col mb-5">
-                <div class="card">
-                    <div class="card-header w-full fw-bold fs-5 bg-primary text-white">
+                <div class="card shadow-sm">
+                    <div class="card-header w-full fw-bold fs-5 bg-teal text-white">
                         <span class="badge bg-warning">C4</span> Pendidikan Kepala Keluarga
                     </div>
                     <div class="card-body">
@@ -102,7 +102,7 @@
                         <?php foreach ($data['c4'] as $item) : ?>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <?= $item['nama_sub']; ?>
-                                <span class="badge bg-primary rounded-pill fw-light">bobot: <?= $item['bobot_sub'] ;?></span>
+                                <span class="badge bg-teal rounded-pill fw-light">bobot: <?= $item['bobot_sub'] ;?></span>
                             </li>
                         <?php endforeach; ?>
                     </ul>
@@ -110,8 +110,8 @@
             </div>
 
             <div class="col mb-5">
-                <div class="card">
-                    <div class="card-header w-full fw-bold fs-5 bg-primary text-white">
+                <div class="card shadow-sm">
+                    <div class="card-header w-full fw-bold fs-5 bg-teal text-white">
                         <span class="badge bg-warning">C5</span> Jenis Lantai
                     </div>
                     <div class="card-body">
@@ -123,7 +123,7 @@
                         <?php foreach ($data['c5'] as $item) : ?>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <?= $item['nama_sub']; ?>
-                                <span class="badge bg-primary rounded-pill fw-light">bobot: <?= $item['bobot_sub'] ;?></span>
+                                <span class="badge bg-teal rounded-pill fw-light">bobot: <?= $item['bobot_sub'] ;?></span>
                             </li>
                         <?php endforeach; ?>
                     </ul>
@@ -131,8 +131,8 @@
             </div>
 
             <div class="col mb-5">
-                <div class="card">
-                    <div class="card-header w-full fw-bold fs-5 bg-primary text-white">
+                <div class="card shadow-sm">
+                    <div class="card-header w-full fw-bold fs-5 bg-teal text-white">
                         <span class="badge bg-warning">C6</span> Jenis Dinding
                     </div>
                     <div class="card-body">
@@ -144,7 +144,7 @@
                         <?php foreach ($data['c6'] as $item) : ?>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <?= $item['nama_sub']; ?>
-                                <span class="badge bg-primary rounded-pill fw-light">bobot: <?= $item['bobot_sub'] ;?></span>
+                                <span class="badge bg-teal rounded-pill fw-light">bobot: <?= $item['bobot_sub'] ;?></span>
                             </li>
                         <?php endforeach; ?>
                     </ul>
@@ -152,8 +152,8 @@
             </div>
 
             <div class="col mb-5">
-                <div class="card">
-                    <div class="card-header w-full fw-bold fs-5 bg-primary text-white">
+                <div class="card shadow-sm">
+                    <div class="card-header w-full fw-bold fs-5 bg-teal text-white">
                         <span class="badge bg-warning">C7</span> Jenis Atap
                     </div>
                     <div class="card-body">
@@ -165,7 +165,7 @@
                         <?php foreach ($data['c7'] as $item) : ?>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <?= $item['nama_sub']; ?>
-                                <span class="badge bg-primary rounded-pill fw-light">bobot: <?= $item['bobot_sub'] ;?></span>
+                                <span class="badge bg-teal rounded-pill fw-light">bobot: <?= $item['bobot_sub'] ;?></span>
                             </li>
                         <?php endforeach; ?>
                     </ul>
@@ -173,8 +173,8 @@
             </div>
 
             <div class="col mb-5">
-                <div class="card">
-                    <div class="card-header w-full fw-bold fs-5 bg-primary text-white">
+                <div class="card shadow-sm">
+                    <div class="card-header w-full fw-bold fs-5 bg-teal text-white">
                         <span class="badge bg-warning">C8</span> Sumber Air Minum
                     </div>
                     <div class="card-body">
@@ -186,7 +186,7 @@
                         <?php foreach ($data['c8'] as $item) : ?>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <?= $item['nama_sub']; ?>
-                                <span class="badge bg-primary rounded-pill fw-light">bobot: <?= $item['bobot_sub'] ;?></span>
+                                <span class="badge bg-teal rounded-pill fw-light">bobot: <?= $item['bobot_sub'] ;?></span>
                             </li>
                         <?php endforeach; ?>
                     </ul>
@@ -194,8 +194,8 @@
             </div>
 
             <div class="col mb-5">
-                <div class="card">
-                    <div class="card-header w-full fw-bold fs-5 bg-primary text-white">
+                <div class="card shadow-sm">
+                    <div class="card-header w-full fw-bold fs-5 bg-teal text-white">
                         <span class="badge bg-warning">C9</span> Sumber Penerangan
                     </div>
                     <div class="card-body">
@@ -207,7 +207,7 @@
                         <?php foreach ($data['c9'] as $item) : ?>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <?= $item['nama_sub']; ?>
-                                <span class="badge bg-primary rounded-pill fw-light">bobot: <?= $item['bobot_sub'] ;?></span>
+                                <span class="badge bg-teal rounded-pill fw-light">bobot: <?= $item['bobot_sub'] ;?></span>
                             </li>
                         <?php endforeach; ?>
                     </ul>
@@ -215,8 +215,8 @@
             </div>
 
             <div class="col mb-5">
-                <div class="card">
-                    <div class="card-header w-full fw-bold fs-5 bg-primary text-white">
+                <div class="card shadow-sm">
+                    <div class="card-header w-full fw-bold fs-5 bg-teal text-white">
                         <span class="badge bg-warning">C10</span> Bahan Bakar Memasak
                     </div>
                     <div class="card-body">
@@ -228,7 +228,7 @@
                         <?php foreach ($data['c10'] as $item) : ?>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <?= $item['nama_sub']; ?>
-                                <span class="badge bg-primary rounded-pill fw-light">bobot: <?= $item['bobot_sub'] ;?></span>
+                                <span class="badge bg-teal rounded-pill fw-light">bobot: <?= $item['bobot_sub'] ;?></span>
                             </li>
                         <?php endforeach; ?>
                     </ul>
@@ -236,8 +236,8 @@
             </div>
 
             <div class="col mb-5">
-                <div class="card">
-                    <div class="card-header w-full fw-bold fs-5 bg-primary text-white">
+                <div class="card shadow-sm">
+                    <div class="card-header w-full fw-bold fs-5 bg-teal text-white">
                         <span class="badge bg-warning">C11</span> Pekerjaan Kepala Keluarga
                     </div>
                     <div class="card-body">
@@ -249,7 +249,7 @@
                         <?php foreach ($data['c11'] as $item) : ?>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <?= $item['nama_sub']; ?>
-                                <span class="badge bg-primary rounded-pill fw-light">bobot: <?= $item['bobot_sub'] ;?></span>
+                                <span class="badge bg-teal rounded-pill fw-light">bobot: <?= $item['bobot_sub'] ;?></span>
                             </li>
                         <?php endforeach; ?>
                     </ul>
@@ -257,8 +257,8 @@
             </div>
 
             <div class="col mb-5">
-                <div class="card">
-                    <div class="card-header w-full fw-bold fs-5 bg-primary text-white">
+                <div class="card shadow-sm">
+                    <div class="card-header w-full fw-bold fs-5 bg-teal text-white">
                         <span class="badge bg-warning">C12</span> Jumlah Aset
                     </div>
                     <div class="card-body">
@@ -270,7 +270,7 @@
                         <?php foreach ($data['c12'] as $item) : ?>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <?= $item['nama_sub']; ?>
-                                <span class="badge bg-primary rounded-pill fw-light">bobot: <?= $item['bobot_sub'] ;?></span>
+                                <span class="badge bg-teal rounded-pill fw-light">bobot: <?= $item['bobot_sub'] ;?></span>
                             </li>
                         <?php endforeach; ?>
                     </ul>
