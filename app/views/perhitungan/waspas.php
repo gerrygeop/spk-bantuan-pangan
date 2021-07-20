@@ -1,4 +1,4 @@
-<?php $jmlAlternatif = count($data['alt']); ?>
+<?php $jmlAlternatif = count($data['wp']['users']); ?>
 
 <div class="container-fluid" id="perhitungan-waspas">
 
@@ -190,23 +190,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($data["wp"]["rankWp"] as $key => $value) { ?>
+                    <?php 
+                        $i=1;
+                        foreach ($data["wp"]["rankWp"] as $key => $value) {
+                    ?>
                         <tr class="text-center">
                             <th>
-                                <?= 'A' . $key; ?>
+                                <?= "A$key" ?>
                             </th>
                             <td>
-                                <?php foreach ($data['wp']['users'] as $id => $alt) {
-                                    if ($id == $key) {
-                                        echo $alt;
-                                    }
-                                } ?>
+                                <?= $value[1] ?>
                             </td>
                             <td class="py-2 px-3">
-                                <?= substr($value, 0, 10); ?>
+                                <?= substr($value[0], 0, 8); ?>
                             </td>
                         </tr>
-                    <?php } ?>
+                    <?php $i++; } ?>
                 </tbody>
             </table>
         </div>

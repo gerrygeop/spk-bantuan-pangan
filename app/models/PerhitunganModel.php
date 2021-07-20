@@ -13,21 +13,21 @@ class PerhitunganModel{
 
     public function hitungWP($dataWp)
     {
-        // Hitung jumlah alternatif
+        //** Hitung jumlah alternatif
         $alternatif = count($dataWp['alt']);
 
-        // Ambil semua bobot sub-kriteria (matrix keputusan)
+        //** Ambil semua bobot sub-kriteria (matrix keputusan)
         $X = $this->getSubBobot($dataWp['alt'], $dataWp['sub']);
 
-        // Ambil bobot kriteria
+        //** Ambil bobot kriteria
         foreach ($dataWp['nilai'] as $n) {
             $bobotKtr[] = $n['nilai_bk'];
         }
 
-        // Hitung jumlah kriteria
+        //** Hitung jumlah kriteria
         $jmlKriteria = count($bobotKtr);
 
-        // Normalisasi matriks
+        //** Normalisasi matriks
         for ($j=1; $j <= $jmlKriteria; $j++) { 
             $tmp = $this->getBobotSubByIdKriteria($j);
             foreach($tmp as $value) {
@@ -41,8 +41,8 @@ class PerhitunganModel{
             unset($max);
         }
 
-        // Menghitung Nilai Bobot Preferensi (Qi)
         //* Tahap 1
+        //** Menghitung Nilai Bobot Preferensi (Qi)
         for ($i=1; $i <= $alternatif; $i++) { 
             for ($c=1; $c <= $jmlKriteria; $c++) { 
                 $dikali["$c-$i"] = $data["A$c-$i"] * $bobotKtr[$c-1];
@@ -66,16 +66,27 @@ class PerhitunganModel{
         }
 
         //* Tahap 3
-        //* Hasil Perhitungan
+        //** Hasil Perhitungan
         for ($i=1; $i <= $alternatif; $i++) { 
-            $rank[$i] = $data["QP3-$i"] = $data["QP1-$i"] + $data["QP2-$i"];
+            $data["QP3-$i"] = $data["QP1-$i"] + $data["QP2-$i"];
         }
 
-        // Ambil semua User/Alternatif
+        //** Ambil semua User/Alternatif
         $data['users'] = $this->getAlternatifName($dataWp);
-        
-        // Sorting nilai WASPAS (ranking)
+
+        //** Gabungkan nama user dan nilai perhitungan ke dalam array rank
+        for ($i=1; $i <= $alternatif; $i++) { 
+            $rank[$i] = array($data["QP3-$i"], $data['users'][$i]);
+            //$rank[$i][$data['users'][$i]] = $data["QP3-$i"];
+        }
+        //die("<pre>". print_r($rank, 1) ."</pre>");
+
+        //** Sorting nilai berdasarkan yang tertinggi
         arsort($rank);
+
+        //die("<pre>". print_r($rank, 1) ."</pre>");
+        //echo "<pre>". print_r($rank, 1) ."</pre>";
+        
         $data['rankWp'] = $rank;
 
         return $data;

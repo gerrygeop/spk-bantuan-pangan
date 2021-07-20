@@ -46,23 +46,25 @@
 
     <title><?= $data['judul'] ?></title>
 </head>
-<body class="font-poppins">
+<body class="font-poppins bg-light">
 
-    <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-teal mb-3 py-3 shadow">
+    <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-teal mb-3 py-3 shadow-sm">
         <div class="container">
-            <a class="navbar-brand fs-4 text-light" href="<?= BASEURL; ?>/home">BPNT Samarinda</a>
+            <a class="navbar-brand fs-4 text-light" href="<?= BASEURL; ?>">BPNT Samarinda</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= BASEURL; ?>/home">Home</a>
-                    </li>
 
                     <?php if ( isset($_SESSION['user_id']) ) : ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= BASEURL; ?>/kriteria">Kriteria</a>
+                            <a
+                                class="nav-link <?= ($data['judul'] === 'Perhitungan') ? 'active':'' ?>"
+                                href="<?= BASEURL; ?>/perhitungan"
+                            >
+                                Rekomendasi
+                            </a>
                         </li>
                         <?php if ($_SESSION['user_role'] === 'superadmin') : ?>
                             <li class="nav-item">
@@ -72,7 +74,7 @@
                     <?php endif; ?>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= BASEURL; ?>/home/help">Help</a>
+                        <a class="nav-link <?= ($data['judul'] === 'Help') ? 'active':'' ?>" href="<?= BASEURL; ?>/home/help">Help</a>
                     </li>
                 </ul>
                 

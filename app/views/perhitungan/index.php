@@ -7,7 +7,7 @@
         <!-- Start perhitungan -->
         <div class="d-flex flex-column">
 
-            <div class="mb-5">
+            <!-- <div class="mb-5">
 
                 <div class="mb-4">
                     <h4 class="text-secondary mb-0">#Pengujian Tingkat Akurasi</h4>
@@ -60,7 +60,7 @@
                     </div>
                 </div>
 
-            </div>
+            </div> -->
 
 
             <div class="mb-5">
@@ -72,8 +72,8 @@
                 </div>
 
                 <div class="row px-2">
-
                     <div class="col-sm col-lg-8 py-2 px-4 my-3 shadow border rounded">
+
                         <table class="table">
                             <thead>
                                 <tr>
@@ -83,44 +83,41 @@
                                 </tr>
                             </thead>
                             <tbody>
+
                                 <?php
-                                    $jumlahAlt = count($data['alt']);
-                                    $lolos = 80 * $jumlahAlt / 100;
-                                    
-                                    $i=1;
-                                    foreach($data['wp']['rankWp'] as $key => $value) { 
+                                    $jumlahAlt = count($data['wp']['users']);
+                                    $kuota = 80 * $jumlahAlt / 100;
+                                    $lolos=1;
+
+                                    foreach($data['wp']['rankWp'] as $key => $value) {
                                 ?>
                                     <tr>
                                         <th>
-                                            <?= 'A'.$key; ?>
+                                            <?= "A$key" ?>
                                         </th>
                                         <td>
-                                            <?php foreach ($data['wp']['users'] as $n => $alt) {
-                                                if ($n == $key) {
-                                                    echo $alt;
-                                                }
-                                            } ?>
+                                            <?= $value[1] ?>
                                         </td>
                                         <td>
                                             <?php
-                                                $tp[] = $value;
-                                                echo substr($value, 0, 6);
+                                                echo substr($value[0], 0, 8);
                                             ?>
                                         </td>
                                         <td class="text-center">
-                                            <?php if($i <= $lolos) {
+                                            <?php if($lolos <= $kuota) {
                                                 echo '<span class="badge bg-success">Diterima</span>';
-                                                $i++;
+                                                $lolos++;
                                             } else {
                                                 echo '<span class="badge bg-danger">Tidak diterima</span>';
                                             } ?>
                                         </td>
                                     </tr>
                                 <?php } ?>
+
                             </tbody>
                         </table>
+                        
                     </div>
-
                 </div>
             </div>
             

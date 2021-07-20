@@ -1,6 +1,4 @@
-<?php
-    $jmlAlternatif = count($data['alt']);
-?>
+<?php $jmlAlternatif = count($data['vk']['users']); ?>
 
 <div class="container-fluid" id="perhitungan-vikor">
 
