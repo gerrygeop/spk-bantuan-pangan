@@ -13,19 +13,17 @@ class PerhitunganModel{
 
     public function hitungWP($dataWp)
     {
-        //** Hitung jumlah alternatif
-        $alternatif = count($dataWp['alt']);
-
-        //** Ambil semua bobot sub-kriteria (matrix keputusan)
-        $X = $this->getSubBobot($dataWp['alt'], $dataWp['sub']);
-
         //** Ambil bobot kriteria
         foreach ($dataWp['nilai'] as $n) {
             $bobotKtr[] = $n['nilai_bk'];
         }
 
-        //** Hitung jumlah kriteria
+        //** Hitung jumlah alternatif & Hitung jumlah kriteria
+        $jmlAlternatif = count($dataWp['alt']);
         $jmlKriteria = count($bobotKtr);
+
+        //** Ambil semua bobot sub-kriteria (matrix keputusan)
+        $X = $this->getSubBobot($dataWp['alt'], $dataWp['sub'], $jmlKriteria);
 
         //** Normalisasi matriks
         for ($j=1; $j <= $jmlKriteria; $j++) { 
@@ -35,7 +33,7 @@ class PerhitunganModel{
             }
 
             $max = max($max);
-            for ($i=1; $i <= $alternatif; $i++) { 
+            for ($i=1; $i <= $jmlAlternatif; $i++) { 
                 $data["A$j-$i"] = $X["C$j-$i"] / $max;
             }
             unset($max);
@@ -43,7 +41,7 @@ class PerhitunganModel{
 
         //* Tahap 1
         //** Menghitung Nilai Bobot Preferensi (Qi)
-        for ($i=1; $i <= $alternatif; $i++) { 
+        for ($i=1; $i <= $jmlAlternatif; $i++) { 
             for ($c=1; $c <= $jmlKriteria; $c++) { 
                 $dikali["$c-$i"] = $data["A$c-$i"] * $bobotKtr[$c-1];
                 $ditambah[] = $dikali["$c-$i"];
@@ -56,7 +54,7 @@ class PerhitunganModel{
         
         //* Tahap 2
         unset($dikali);
-        for ($i=1; $i <= $alternatif; $i++) { 
+        for ($i=1; $i <= $jmlAlternatif; $i++) { 
             $dikali = 1;
             for ($c=1; $c <= $jmlKriteria; $c++) { 
                 $dipangkat["Q$c-$i"] = pow($data["A$c-$i"], $bobotKtr[$c-1]);
@@ -67,7 +65,7 @@ class PerhitunganModel{
 
         //* Tahap 3
         //** Hasil Perhitungan
-        for ($i=1; $i <= $alternatif; $i++) { 
+        for ($i=1; $i <= $jmlAlternatif; $i++) { 
             $data["QP3-$i"] = $data["QP1-$i"] + $data["QP2-$i"];
         }
 
@@ -75,11 +73,9 @@ class PerhitunganModel{
         $data['users'] = $this->getAlternatifName($dataWp);
 
         //** Gabungkan nama user dan nilai perhitungan ke dalam array rank
-        for ($i=1; $i <= $alternatif; $i++) { 
+        for ($i=1; $i <= $jmlAlternatif; $i++) { 
             $rank[$i] = array($data["QP3-$i"], $data['users'][$i]);
-            //$rank[$i][$data['users'][$i]] = $data["QP3-$i"];
         }
-        //die("<pre>". print_r($rank, 1) ."</pre>");
 
         //** Sorting nilai berdasarkan yang tertinggi
         arsort($rank);
@@ -92,24 +88,20 @@ class PerhitunganModel{
         return $data;
     }
 
-
     public function hitungVK($dataVk)
     {
-        // Hitung jumlah alternatif
-        $alternatif = count($dataVk['alt']);
-
-        // Ambil semua bobot sub-kriteria (matrix keputusan)
-        $X = $this->getSubBobot($dataVk['alt'], $dataVk['sub']);
-        
-        // Ambil bobot kriteria dari ...? ^lupa
         foreach ($dataVk['nilai'] as $n) {
-            $nilai[] = $n['nilai_bk'];
+            $bobotKtr[] = $n['nilai_bk'];
         }
 
-        // Hitung jumlah kriteria
-        $jmlKriteria = count($nilai);
+        //** Hitung jumlah Alternatif & kriteria
+        $alternatif = count($dataVk['alt']);
+        $jmlKriteria = count($bobotKtr);
 
-        // Normalisasi Matriks
+        //** Ambil semua bobot sub-kriteria (matrix keputusan)
+        $X = $this->getSubBobot($dataVk['alt'], $dataVk['sub'], $jmlKriteria);
+
+        //** Normalisasi Matriks
         for ($j=1; $j <= $jmlKriteria; $j++) {
             
             $tmp = $this->getBobotSubByIdKriteria($j);
@@ -127,14 +119,14 @@ class PerhitunganModel{
             unset($Xj);
         }
 
-        // Normalisasi * Bobot
+        //** Normalisasi x Bobot
         for ($i=1; $i <= $jmlKriteria; $i++) { 
             for ($j=1; $j <= $alternatif; $j++) { 
-                $data["A$i-$j"] = $nilai[$i-1] * $data["N$i-$j"];
+                $data["A$i-$j"] = $bobotKtr[$i-1] * $data["N$i-$j"];
             }
         }
 
-        // Menghitung Nilai S dan R
+        //** Menghitung Nilai S dan R
         for ($i=1; $i <= $alternatif; $i++) { 
             for ($j=1; $j <= $jmlKriteria; $j++) { 
                 $nilaiAlt[] = $data["A$j-$i"];
@@ -145,7 +137,7 @@ class PerhitunganModel{
         }
 
 
-        // Menghitung Nilai Vikor
+        //** Menghitung Nilai Vikor
         $_s_max_kurang_min = max($S) - min($S);
         $_r_max_kurang_min = max($R) - min($R);
         $_rV = 1 - 0.5;
@@ -165,29 +157,21 @@ class PerhitunganModel{
         $data['users'] = $this->getAlternatifName($dataVk);
         $data["S"] = $S;
         $data["R"] = $R;
+
         asort($Q);
         $data["Q"] = $Q;
 
         return $data;
     }
 
-    public function getSubBobot($alternatif, $subkriteria)
+    public function getSubBobot($alternatif, $subkriteria, $jmlKriteria)
     {
         $k = 1;
         foreach ($alternatif as $alt) {
             foreach ($subkriteria as $sub) {
-                $alt['c1'] == $sub['id_sub'] ? $key['C1-'.$k] = $sub['bobot_sub'] : 0;
-                $alt['c2'] == $sub['id_sub'] ? $key['C2-'.$k] = $sub['bobot_sub'] : 0;
-                $alt['c3'] == $sub['id_sub'] ? $key['C3-'.$k] = $sub['bobot_sub'] : 0;
-                $alt['c4'] == $sub['id_sub'] ? $key['C4-'.$k] = $sub['bobot_sub'] : 0;
-                $alt['c5'] == $sub['id_sub'] ? $key['C5-'.$k] = $sub['bobot_sub'] : 0;
-                $alt['c6'] == $sub['id_sub'] ? $key['C6-'.$k] = $sub['bobot_sub'] : 0;
-                $alt['c7'] == $sub['id_sub'] ? $key['C7-'.$k] = $sub['bobot_sub'] : 0;
-                $alt['c8'] == $sub['id_sub'] ? $key['C8-'.$k] = $sub['bobot_sub'] : 0;
-                $alt['c9'] == $sub['id_sub'] ? $key['C9-'.$k] = $sub['bobot_sub'] : 0;
-                $alt['c10'] == $sub['id_sub'] ? $key['C10-'.$k] = $sub['bobot_sub'] : 0;
-                $alt['c11'] == $sub['id_sub'] ? $key['C11-'.$k] = $sub['bobot_sub'] : 0;
-                $alt['c12'] == $sub['id_sub'] ? $key['C12-'.$k] = $sub['bobot_sub'] : 0;
+                for ($i=1; $i <= $jmlKriteria; $i++) { 
+                    $alt["c$i"] == $sub['id_sub'] ? $key["C$i-".$k] = $sub['bobot_sub'] : 0;
+                }
             }
             $k++;
         }
@@ -199,6 +183,7 @@ class PerhitunganModel{
         $query = "SELECT bobot_sub FROM $this->tbl_subKriteria JOIN $this->tbl_pivotKtr USING(id_sub) WHERE id_ktr=:id";
         $this->db->query($query);
         $this->db->bind('id', $id);
+
         return $this->db->resultSet();
     }
 

@@ -1,19 +1,20 @@
 <div class="container">
     <div class="px-2 py-3 mb-5">
-        <h3 class="text-secondary mb-4">
+        <h3 class="text-secondary mb-2">
             Hasil Rekomendasi
         </h3>
 
         <!-- Start perhitungan -->
         <div class="d-flex flex-column">
 
-            <!-- <div class="mb-5">
+            <div class="mb-5">
 
                 <div class="mb-4">
-                    <h4 class="text-secondary mb-0">#Pengujian Tingkat Akurasi</h4>
+                    <!-- <h4 class="text-secondary mb-0">#Pengujian Tingkat Akurasi</h4> -->
                     <div class="row justify-content-center px-2">
-                        <div class="col py-2 px-4 my-3 shadow-sm border border-1 rounded table-responsive">
-                            <table class="table">
+                        <div class="col py-2 px-4 my-3 border rounded table-responsive">
+                            <table class="table caption-top">
+                                <caption>Tabel hasil Pengujian Tingkat Akurasi</caption>
                                 <thead>
                                     <tr>
                                         <th>TOPSIS</th>
@@ -32,13 +33,11 @@
                 </div>
                 
                 <div>
-                    <h4 class="text-secondary mb-0">#Uji Sensitivitas</h4>
+                    <!-- <h4 class="text-secondary mb-0">#Uji Sensitivitas</h4> -->
                     <div class="row justify-content-center px-2">
-                        <div class="col py-2 px-4 my-3 shadow-sm border border-1 rounded table-responsive">
-                            <table class="table">
-                                <caption>
-                                    Berdasarkan pengujian menggunakan <b>Tingkat Akurasi</b> dan <b>Uji Sensitivitas</b> maka metode terbaik adalah metode WASPAS karena memiliki nilai pengujian yang lebih besar
-                                </caption>
+                        <div class="col py-2 px-4 my-3 border rounded table-responsive">
+                            <table class="table caption-top">
+                                <caption>Tabel hasil Uji Sensitivitas</caption>
                                 <thead>
                                     <tr>
                                         <th>WASPAS</th>
@@ -55,26 +54,45 @@
                                         </td>
                                     </tr>
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="2" class="fw-light text-muted">
+                                            <p>
+                                                Berdasarkan pengujian menggunakan <b class="fw-bold">Tingkat Akurasi</b> dan
+                                                <b class="fw-bold">Uji Sensitivitas</b> maka metode terbaik adalah metode WASPAS karena memiliki nilai pengujian yang lebih besar
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </tfoot>
                             </table>
                         </div>
                     </div>
                 </div>
 
-            </div> -->
+            </div>
 
 
-            <div class="mb-5">
+            <div class="mb-5 pt-3">
                 <h4 class="text-secondary">Ranking metode WASPAS </h4>
-                
-                <div>
-                    <a href="<?=BASEURL;?>/perhitungan/waspas" class="btn btn-warning btn-sm">Detail WASPAS</a>
-                    <a href="<?=BASEURL;?>/perhitungan/vikor" class="btn btn-warning btn-sm">Detail VIKOR</a>
+
+                <div class="row justify-content-between">
+                    <form action="" method="POST" class="col-12 col-lg-5">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Cari nama" aria-label="Cari nama" aria-describedby="button-search">
+                            <button class="btn btn-outline-secondary" type="button" id="button-search">Cari</button>
+                        </div>
+                    </form>
+
+                    <div class="col-12 col-lg-5 text-end">
+                        <a href="<?=BASEURL;?>/perhitungan/waspas" class="btn btn-warning">Detail WASPAS</a>
+                        <a href="<?=BASEURL;?>/perhitungan/vikor" class="btn btn-warning">Detail VIKOR</a>
+                    </div>
                 </div>
 
                 <div class="row px-2">
-                    <div class="col-sm col-lg-8 py-2 px-4 my-3 shadow border rounded">
+                    <div class="col bg-white py-2 px-4 my-3 border rounded">
 
-                        <table class="table">
+                        <table class="table ">
                             <thead>
                                 <tr>
                                     <th scope="col">Alt</th>
