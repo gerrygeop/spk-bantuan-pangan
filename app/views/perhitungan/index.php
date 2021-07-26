@@ -78,7 +78,7 @@
                 <div class="row justify-content-between">
                     <form action="" method="POST" class="col-12 col-lg-5">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Cari nama" aria-label="Cari nama" aria-describedby="button-search">
+                            <input type="text" class="form-control" placeholder="Cari nama" name="search" aria-describedby="button-search">
                             <button class="btn btn-outline-secondary" type="button" id="button-search">Cari</button>
                         </div>
                     </form>
