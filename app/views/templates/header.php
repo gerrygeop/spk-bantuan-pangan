@@ -15,26 +15,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans&display=swap" rel="stylesheet">
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
-
     <!-- Font Poppins -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
     <style>
-        .bg-teal{
-            background-color: #10B981;
-        }
-        .text-teal{
-            color: #10B981;
-        }
         .font-poppins{
             font-family: 'Poppins', sans-serif;
         }
         .navbar-brand{
             font-family: 'Merriweather Sans', sans-serif;
-            /* font-family: 'Josefin Sans', sans-serif; */
         }
         .cut-text{
             max-width: 100px !important;
@@ -48,7 +38,7 @@
 </head>
 <body class="font-poppins bg-light">
 
-    <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-teal mb-3 py-3 shadow-sm">
+    <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-success mb-3 py-3 shadow-sm">
         <div class="container">
             <a class="navbar-brand fs-4 text-light" href="<?= BASEURL; ?>">BPNT Samarinda</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,7 +58,7 @@
                         </li>
                         <?php if ($_SESSION['user_role'] === 'superadmin') : ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="<?= BASEURL; ?>/alternatif">Alternatif</a>
+                                <a class="nav-link <?= ($data['judul'] === 'Alternatif') ? 'active':'' ?>" href="<?= BASEURL; ?>/alternatif">Alternatif</a>
                             </li>
                         <?php endif; ?>
                     <?php endif; ?>

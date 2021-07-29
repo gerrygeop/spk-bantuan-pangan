@@ -4,7 +4,7 @@ class Alternatif extends Controller {
 
     public function index()
     {
-        $data['judul'] = 'Tabel data Calon Penerima';
+        $data['judul'] = 'Alternatif';
         $data['alt'] = $this->model('AlternatifModel')->getAllAlternatif();
         $data['sub'] = $this->model('KriteriaModel')->getAllSubKriteria();
 
@@ -15,7 +15,7 @@ class Alternatif extends Controller {
 
     public function create()
     {
-        $data['judul'] = 'Tambah data calon penerima';
+        $data['judul'] = 'Alternatif';
 
         for ($i=1; $i <= 12; $i++) { 
             $data['c'.$i] = $this->model('KriteriaModel')->getSubKriteriaById($i);
@@ -41,7 +41,7 @@ class Alternatif extends Controller {
 
     public function edit($id)
     {
-        $data['judul'] = 'Edit data';
+        $data['judul'] = 'Alternatif';
         $data['alt'] = $this->model('AlternatifModel')->getAlternatifById($id);
 
         for ($i=1; $i <= 12; $i++) { 

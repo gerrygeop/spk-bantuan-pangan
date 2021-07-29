@@ -31,7 +31,7 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Nama</th>
-                        <?php for ($i=1; $i <= 12; $i++) : ?>
+                        <?php for ($i=1; $i <= 16; $i++) : ?>
                             <th scope="col">
                                 <?= 'C' . $i; ?>
                             </th>
@@ -108,17 +108,37 @@
                                     $alt['c12'] == $sub['id_sub'] ?  print_r($sub['nama_sub']) : 'null';
                                 } ?>
                             </td>
+                            <td scope="row" class="cut-text py-3">
+                                <?php foreach ($data['sub'] as $sub) {
+                                    $alt['c13'] == $sub['id_sub'] ?  print_r($sub['nama_sub']) : 'null';
+                                } ?>
+                            </td>
+                            <td scope="row" class="cut-text py-3">
+                                <?php foreach ($data['sub'] as $sub) {
+                                    $alt['c14'] == $sub['id_sub'] ?  print_r($sub['nama_sub']) : 'null';
+                                } ?>
+                            </td>
+                            <td scope="row" class="cut-text py-3">
+                                <?php foreach ($data['sub'] as $sub) {
+                                    $alt['c15'] == $sub['id_sub'] ?  print_r($sub['nama_sub']) : 'null';
+                                } ?>
+                            </td>
+                            <td scope="row" class="cut-text py-3">
+                                <?php foreach ($data['sub'] as $sub) {
+                                    $alt['c16'] == $sub['id_sub'] ?  print_r($sub['nama_sub']) : 'null';
+                                } ?>
+                            </td>
 
                             <td scope="row" class="col-1 text-center">
                                 <a href="<?= BASEURL; ?>/alternatif/edit/<?= $alt['id_alt']; ?>" class="btn btn-primary btn-sm pt-0" title="Edit">
                                     <i class="bi bi-pencil-square"></i>
                                 </a>
 
-                                <!-- <form action="<?= BASEURL; ?>/alternatif/delete/<?= $alt['id_alt']; ?>" method="POST" class="d-inline">
+                                <form action="<?= BASEURL; ?>/alternatif/delete/<?= $alt['id_alt']; ?>" method="POST" class="d-inline">
                                     <button class="btn btn-danger btn-sm pt-0" onclick="return confirm('Yakin?');">
                                         <i class="bi bi-trash"></i>
                                     </button>
-                                </form> -->
+                                </form>
                             </td>
                         </tr>
                     <?php $i++; endforeach; ?>

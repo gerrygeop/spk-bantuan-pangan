@@ -9,8 +9,7 @@
         </ol>
     </nav>
 
-    <div class="shadow px-4 py-3 rounded border mb-5">
-
+    <div class="bg-white shadow-sm p-3 rounded border mb-5">
         <div class="d-flex justify-content-between align-items-center">
             <h4 class="text-secondary">
                 #Normalisasi Matriks
@@ -20,12 +19,12 @@
             </a>
         </div>
         
-        <div class="py-2 px-3 my-3 border border-1 rounded table-responsive">
+        <div class="py-2 my-3 rounded table-responsive">
             <table class="table table-sm align-middle">
                 <thead>
                     <tr class="text-center">
                         <th scope="col">Alt</th>
-                        <?php for ($i=1; $i <= 12; $i++) { ?>
+                        <?php for ($i=1; $i <= 16; $i++) { ?>
                             <th scope="col">
                                 <?= 'C' . $i; ?>
                             </th>
@@ -38,42 +37,12 @@
                             <th scope="row">
                                 <?= 'A' . $i; ?>
                             </th>
-                            <td class="py-2 px-3">
-                                <?= substr($data['vk']["N1-$i"], 0, 6); ?>
-                            </td>
-                            <td class="py-2 px-3">
-                                <?= substr($data['vk']["N2-$i"], 0, 6); ?>
-                            </td>
-                            <td class="py-2 px-3">
-                                <?= substr($data['vk']["N3-$i"], 0, 6); ?>
-                            </td>
-                            <td class="py-2 px-3">
-                                <?= substr($data['vk']["N4-$i"], 0, 6); ?>
-                            </td>
-                            <td class="py-2 px-3">
-                                <?= substr($data['vk']["N5-$i"], 0, 6); ?>
-                            </td>
-                            <td class="py-2 px-3">
-                                <?= substr($data['vk']["N6-$i"], 0, 6); ?>
-                            </td>
-                            <td class="py-2 px-3">
-                                <?= substr($data['vk']["N7-$i"], 0, 6); ?>
-                            </td>
-                            <td class="py-2 px-3">
-                                <?= substr($data['vk']["N8-$i"], 0, 6); ?>
-                            </td>
-                            <td class="py-2 px-3">
-                                <?= substr($data['vk']["N9-$i"], 0, 6); ?>
-                            </td>
-                            <td class="py-2 px-3">
-                                <?= substr($data['vk']["N10-$i"], 0, 6); ?>
-                            </td>
-                            <td class="py-2 px-3">
-                                <?= substr($data['vk']["N11-$i"], 0, 6); ?>
-                            </td>
-                            <td class="py-2 px-3">
-                                <?= substr($data['vk']["N12-$i"], 0, 6); ?>
-                            </td>
+
+                            <?php for ($j=1; $j <= 16; $j++) { ?>
+                                <td class="py-2 px-3">
+                                    <?= substr($data['vk']["N$j-$i"], 0, 5); ?>
+                                </td>
+                            <?php } ?>
                         </tr>
                     <?php } ?>
                 </tbody>
@@ -84,22 +53,22 @@
         </a>
     </div>
 
-    <div class="shadow px-4 py-3 rounded border mb-5" id="kali-bobot">
-
+    <div class="bg-white shadow-sm p-3 rounded border mb-5" id="kali-bobot">
         <div class="d-flex justify-content-between align-items-center">
             <h4 class="text-secondary">
                 #Normalisasi x Bobot
             </h4>
             <a class="btn btn-outline-primary btn-sm" href="#nilai-sr">
-                Nilai S dan R
+                Nilai S dan R &darr;
             </a>
         </div>
-        <div class="py-2 px-3 my-3 border border-1 rounded table-responsive">
+
+        <div class="py-2 my-3 rounded table-responsive">
             <table class="table table-sm align-middle">
                 <thead>
                     <tr class="text-center">
                         <th scope="col">Alt</th>
-                        <?php for ($i=1; $i <= 12; $i++) { ?>
+                        <?php for ($i=1; $i <= 16; $i++) { ?>
                             <th scope="col">
                                 <?= 'C' . $i; ?>
                             </th>
@@ -112,55 +81,25 @@
                             <th scope="row">
                                 <?= 'A' . $i; ?>
                             </th>
-                            <td class="py-2 px-3">
-                                <?= substr($data['vk']["A1-$i"], 0, 6); ?>
-                            </td>
-                            <td class="py-2 px-3">
-                                <?= substr($data['vk']["A2-$i"], 0, 6); ?>
-                            </td>
-                            <td class="py-2 px-3">
-                                <?= substr($data['vk']["A3-$i"], 0, 6); ?>
-                            </td>
-                            <td class="py-2 px-3">
-                                <?= substr($data['vk']["A4-$i"], 0, 6); ?>
-                            </td>
-                            <td class="py-2 px-3">
-                                <?= substr($data['vk']["A5-$i"], 0, 6); ?>
-                            </td>
-                            <td class="py-2 px-3">
-                                <?= substr($data['vk']["A6-$i"], 0, 6); ?>
-                            </td>
-                            <td class="py-2 px-3">
-                                <?= substr($data['vk']["A7-$i"], 0, 6); ?>
-                            </td>
-                            <td class="py-2 px-3">
-                                <?= substr($data['vk']["A8-$i"], 0, 6); ?>
-                            </td>
-                            <td class="py-2 px-3">
-                                <?= substr($data['vk']["A9-$i"], 0, 6); ?>
-                            </td>
-                            <td class="py-2 px-3">
-                                <?= substr($data['vk']["A10-$i"], 0, 6); ?>
-                            </td>
-                            <td class="py-2 px-3">
-                                <?= substr($data['vk']["A11-$i"], 0, 6); ?>
-                            </td>
-                            <td class="py-2 px-3">
-                                <?= substr($data['vk']["A12-$i"], 0, 6); ?>
-                            </td>
+
+                            <?php for ($j=1; $j <= 16; $j++) { ?>
+                                <td class="py-2 px-3">
+                                    <?= substr($data['vk']["A$j-$i"], 0, 5); ?>
+                                </td>
+                            <?php } ?>
                         </tr>
                     <?php } ?>
                 </tbody>
             </table>
         </div>
+
         <a class="btn btn-primary" href="#nilai-sr">
             Nilai S dan R
         </a>
     </div>
 
-    <div class="shadow px-4 py-3 rounded border mb-5" id="nilai-sr">
-
-        <div class="d-flex align-items-center justify-content-between">
+    <div class="bg-white shadow-sm p-3 rounded border mb-5" id="nilai-sr">
+        <div class="d-flex align-items-center justify-content-between mb-2">
             <h4 class="text-secondary">
                 #Nilai S dan R
             </h4>
@@ -169,7 +108,7 @@
             </a>
         </div>
 
-        <div class="row gap-5">
+        <div class="row justify-content-around">
             <div class="col-sm-12 col-md-3 my-3 border border-1 rounded table-responsive">
                 <table class="table align-middle">
                     <thead>
@@ -250,20 +189,20 @@
         </a>
     </div>
 
-    <div class="shadow px-4 py-3 rounded border mb-5" id="ranking-vk">
+    <div class="bg-white shadow-sm p-3 rounded border mb-5" id="ranking-vk">
         <div class="d-flex justify-content-between align-items-center">
             <h4 class="text-secondary">
                 #Ranking VIKOR
             </h4>
-            <a class="btn btn-primary" href="#perhitungan-vikor">
+            <a class="btn btn-outline-primary btn-sm" href="#perhitungan-vikor">
                 Kembali &uarr;
             </a>
         </div>
 
-        <div class="col-sm col-lg-6 py-2 px-4 my-3 border border-1 rounded table-responsive">
+        <div class="col-sm col-lg-6 p-2 my-3 rounded table-responsive">
             <table class="table align-middle">
                 <thead>
-                    <tr class="text-center">
+                    <tr>
                         <th class="col-2">Alt</th>
                         <th class="col-4">Nama</th>
                         <th class="col-4">Qi</th>
@@ -271,9 +210,9 @@
                 </thead>
                 <tbody>
                     <?php foreach ($data["vk"]["Q"] as $key => $value) { ?>
-                        <tr class="text-center">
+                        <tr>
                             <th>
-                                <?= 'A' . $key; ?>
+                                <?= "A$key"; ?>
                             </th>
                             <td>
                                 <?php foreach ($data['vk']['users'] as $id => $alt) {
@@ -282,7 +221,7 @@
                                     }
                                 } ?>
                             </td>
-                            <td class="py-2 px-3">
+                            <td class="py-2">
                                 <?= substr($value, 0, 10); ?>
                             </td>
                         </tr>
@@ -290,6 +229,7 @@
                 </tbody>
             </table>
         </div>
+
         <a class="btn btn-primary" href="#perhitungan-vikor">
             Kembali &uarr;
         </a>

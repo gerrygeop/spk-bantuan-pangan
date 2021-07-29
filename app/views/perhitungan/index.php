@@ -1,85 +1,70 @@
 <div class="container">
-    <div class="px-2 py-3 mb-5">
-        <h3 class="text-secondary mb-2">
-            Hasil Rekomendasi
-        </h3>
+    <div class="mb-5">
+        <!-- <h3 class="text-secondary mb-2">Hasil Rekomendasi</h3> -->
 
-        <!-- Start perhitungan -->
         <div class="d-flex flex-column">
 
-            <div class="mb-5">
-
-                <div class="mb-4">
-                    <!-- <h4 class="text-secondary mb-0">#Pengujian Tingkat Akurasi</h4> -->
-                    <div class="row justify-content-center px-2">
-                        <div class="col py-2 px-4 my-3 border rounded table-responsive">
-                            <table class="table caption-top">
-                                <caption>Tabel hasil Pengujian Tingkat Akurasi</caption>
-                                <thead>
-                                    <tr>
-                                        <th>TOPSIS</th>
-                                        <th>WP</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>94%</td>
-                                        <td>90%</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+            <!-- <div class="row justify-content-center px-2 mb-3">
+                <div class="col py-2 px-4 my-3 bg-white border rounded table-responsive">
+                    <table class="table caption-top">
+                        <caption>Tabel hasil Pengujian Tingkat Akurasi</caption>
+                        <thead>
+                            <tr>
+                                <th>TOPSIS</th>
+                                <th>WP</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>94%</td>
+                                <td>90%</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                
-                <div>
-                    <!-- <h4 class="text-secondary mb-0">#Uji Sensitivitas</h4> -->
-                    <div class="row justify-content-center px-2">
-                        <div class="col py-2 px-4 my-3 border rounded table-responsive">
-                            <table class="table caption-top">
-                                <caption>Tabel hasil Uji Sensitivitas</caption>
-                                <thead>
-                                    <tr>
-                                        <th>WASPAS</th>
-                                        <th>VIKOR</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            7,61%
-                                        </td>
-                                        <td>
-                                            -0,14%
-                                        </td>
-                                    </tr>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <td colspan="2" class="fw-light text-muted">
-                                            <p>
-                                                Berdasarkan pengujian menggunakan <b class="fw-bold">Tingkat Akurasi</b> dan
-                                                <b class="fw-bold">Uji Sensitivitas</b> maka metode terbaik adalah metode WASPAS karena memiliki nilai pengujian yang lebih besar
-                                            </p>
-                                        </td>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
             </div>
+            
+            <div class="row justify-content-center px-2 mb-5">
+                <div class="col py-2 px-4 my-3 bg-white border rounded table-responsive">
+                    <table class="table caption-top">
+                        <caption>Tabel hasil Uji Sensitivitas</caption>
+                        <thead>
+                            <tr>
+                                <th>WASPAS</th>
+                                <th>VIKOR</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    7,61%
+                                </td>
+                                <td>
+                                    -0,14%
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="2" class="fw-light text-muted">
+                                    <p>Berdasarkan pengujian menggunakan <b class="fw-bold">Tingkat Akurasi</b> dan <b class="fw-bold">Uji Sensitivitas</b> maka metode terbaik adalah metode WASPAS karena memiliki nilai pengujian yang lebih besar.</p>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div> -->
+
 
 
             <div class="mb-5 pt-3">
-                <h4 class="text-secondary">Ranking metode WASPAS </h4>
+                <h3 class="text-secondary">Ranking metode WASPAS</h4>
 
-                <div class="row justify-content-between">
-                    <form action="" method="POST" class="col-12 col-lg-5">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Cari nama" name="search" aria-describedby="button-search">
-                            <button class="btn btn-outline-secondary" type="button" id="button-search">Cari</button>
+                <div class="row justify-content-between align-items-end my-4">
+                    <form action="" method="post" class="col-12 col-lg-5">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="search" id="searchInput" placeholder="Nama lengkap">
+                            <button type="submit" name="submit" class="btn btn-outline-secondary">Cari</button>
                         </div>
                     </form>
 
@@ -90,7 +75,7 @@
                 </div>
 
                 <div class="row px-2">
-                    <div class="col bg-white py-2 px-4 my-3 border rounded">
+                    <div class="col bg-white py-2 border rounded">
 
                         <table class="table ">
                             <thead>
@@ -98,36 +83,45 @@
                                     <th scope="col">Alt</th>
                                     <th scope="col">Nama</th>
                                     <th scope="col">Nilai</th>
+                                    <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
 
                                 <?php
-                                    $jumlahAlt = count($data['wp']['users']);
-                                    $kuota = 80 * $jumlahAlt / 100;
-                                    $lolos=1;
+                                    $ranking = [];
+                                    if ( isset($_POST["submit"]) ) {
+                                        foreach ($data['wp']['rankWp'] as $key => $value) {
+                                            if ($_POST['search'] === $value['nama']) {
+                                                $ranking[$key] = $data['wp']['rankWp'][$key];
+                                            }
 
-                                    foreach($data['wp']['rankWp'] as $key => $value) {
+                                            if ($_POST['search'] === '') {
+                                                $ranking = $data['wp']['rankWp'];
+                                            }
+                                        }
+                                    } else {
+                                        $ranking = $data['wp']['rankWp'];
+                                    }
+
+                                    foreach($ranking as $key => $value) {
                                 ?>
                                     <tr>
                                         <th>
                                             <?= "A$key" ?>
                                         </th>
                                         <td>
-                                            <?= $value[1] ?>
+                                            <?= $value['nama'] ?>
                                         </td>
                                         <td>
                                             <?php
-                                                echo substr($value[0], 0, 8);
+                                                echo substr($value['nilai'], 0, 8);
                                             ?>
                                         </td>
                                         <td class="text-center">
-                                            <?php if($lolos <= $kuota) {
-                                                echo '<span class="badge bg-success">Diterima</span>';
-                                                $lolos++;
-                                            } else {
-                                                echo '<span class="badge bg-danger">Tidak diterima</span>';
-                                            } ?>
+                                            <span class="badge  <?= ($value['status'] === 'Diterima') ? 'bg-success':'bg-danger' ?>">
+                                                <?= $value['status'] ?>
+                                            </span>
                                         </td>
                                     </tr>
                                 <?php } ?>
