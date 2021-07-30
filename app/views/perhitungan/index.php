@@ -2,7 +2,7 @@
 
     <div class="row align-items-center justify-content-between mb-3 mb-md-0">
         <div class="col-12 col-md-6">
-            <h2 class="text-secondary">>Hasil Perhitungan</h3>
+            <h2 class="text-secondary">>Hasil Perhitungan</h2>
         </div>
 
         <div class="col-12 col-md-6 text-md-end">
