@@ -1,134 +1,64 @@
-<div class="container-fluid">
-    <div class="shadow p-4 rounded border mb-5">
+<?php if (!isset($_SESSION['user_id'])) {
+    header('Location: '. BASEURL .'/middleware');
+} ?>
 
-        <div class="row justify-content-between mb-4">
+<div>
+    <div class="p-3 mb-5">
+
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="<?=BASEURL;?>/perhitungan">Perhitungan</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Matrik Keputusan</li>
+            </ol>
+        </nav>
+
+        <div class="row mb-4">
             <div class="col">
-                <h3 class="text-secondary "><?= $data['judul'] ?></h3>
-                <small class="text-sm text-secondary">*Tabel ini menampilkan nilai kriteria pada setiap data calon penerima BPNT.</small>
-            </div>
-            <div class="col text-end">
-                <a href="<?=BASEURL;?>/perhitungan" class="btn btn-warning px-3 py-2">Hasil Perhitungan</a>
+                <h3 class="text-secondary mb-1">Matrik Keputusan</h3>
+                <small class="text-sm fst-italic text-secondary">*Tabel ini menampilkan nilai kriteria pada setiap data calon penerima BPNT.</small>
             </div>
         </div>
         
-        <div class="p-2 border border-1 rounded table-responsive mb-3">
-
-            <table class="table table-hover">
-                <thead class="table-light">
+        <div class="p-2 bg-white border border-1 rounded table-responsive">
+            <table class="table table-hover table-sm align-middle">
+                <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Nama</th>
-                        <?php $i=1; foreach ($data['ktr'] as $ktr) : ?>
+                        <?php $i=1; foreach ($data['ktr'] as $ktr) { ?>
                             <th scope="col">
-                                <button type="button" class="btn btn-light btn-sm fw-bold" data-bs-toggle="tooltip" data-bs-placement="top" title="<?= $ktr['nama_ktr']; ?>">
-                                    <?= 'C' . $i; ?>
+                                <button
+                                    type="button"
+                                    class="btn btn-white btn-sm w-100 fw-bold"
+                                    data-bs-toggle="tooltip"
+                                    data-bs-placement="top"
+                                    title="<?= $ktr['nama_ktr']; ?>"
+                                    >
+                                    <?= "C$i"; ?>
                                 </button>
                             </th>
-                        <?php $i++; endforeach; ?>
+                        <?php $i++; } ?>
                     </tr>
                 </thead>
 
                 <tbody>
                     <?php $i=1; foreach ($data['alt'] as $alt) : ?>
                         <tr>
-                            <th scope="row">
-                            <!--
-                            FOR LOOP NOMOR ALT DARI 1 ... SETERUSNYA 
-                            GAK HARUS PAKE ID, BISA PAKE ANGKA BIASA KARNA GAK ADA PAGINATION
-                            -->
-                               <?= 'A' . $i; ?>
-                            </th>
-                            <td scope="row">
-                                <?= $alt['nama']; ?>
-                            </td>
-                            <td scope="row">
-                                <?php foreach ($data['sub'] as $sub) {  // For Loop data yang diambil dari tabel SubKriteria
-                                    if ($alt['c1'] == $sub['id_sub']) { // Cek apakah ID SubKriteria sama dgn ID kolom C1 di table ALTERNATIF
-                                        echo $sub['bobot_sub'];         // Tampilkan nilai bobot nya! Semua yang dibawah juga sama !
-                                    }
-                                } ?>
-                            </td>
-                            <td scope="row">
-                                <?php foreach ($data['sub'] as $sub) {
-                                    if ($alt['c2'] == $sub['id_sub']) {
-                                        echo $sub['bobot_sub'];
-                                    }
-                                } ?>
-                            </td>
-                            <td scope="row">
-                                <?php foreach ($data['sub'] as $sub) {
-                                    if ($alt['c3'] == $sub['id_sub']) {
-                                        echo $sub['bobot_sub'];
-                                    }
-                                } ?>
-                            </td>
-                            <td scope="row">
-                                <?php foreach ($data['sub'] as $sub) {
-                                    if ($alt['c4'] == $sub['id_sub']) {
-                                        echo $sub['bobot_sub'];
-                                    }
-                                } ?>
-                            </td>
-                            <td scope="row">
-                                <?php foreach ($data['sub'] as $sub) {
-                                    if ($alt['c5'] == $sub['id_sub']) {
-                                        echo $sub['bobot_sub'];
-                                    }
-                                } ?>
-                            </td>
-                            <td scope="row">
-                                <?php foreach ($data['sub'] as $sub) {
-                                    if ($alt['c6'] == $sub['id_sub']) {
-                                        echo $sub['bobot_sub'];
-                                    }
-                                } ?>
-                            </td>
-                            <td scope="row">
-                                <?php foreach ($data['sub'] as $sub) {
-                                    if ($alt['c7'] == $sub['id_sub']) {
-                                        echo $sub['bobot_sub'];
-                                    }
-                                } ?>
-                            </td>
-                            <td scope="row">
-                                <?php foreach ($data['sub'] as $sub) {
-                                    if ($alt['c8'] == $sub['id_sub']) {
-                                        echo $sub['bobot_sub'];
-                                    }
-                                } ?>
-                            </td>
-                            <td scope="row">
-                                <?php foreach ($data['sub'] as $sub) {
-                                    if ($alt['c9'] == $sub['id_sub']) {
-                                        echo $sub['bobot_sub'];
-                                    }
-                                } ?>
-                            </td>
-                            <td scope="row">
-                                <?php foreach ($data['sub'] as $sub) {
-                                    if ($alt['c10'] == $sub['id_sub']) {
-                                        echo $sub['bobot_sub'];
-                                    }
-                                } ?>
-                            </td>
-                            <td scope="row">
-                                <?php foreach ($data['sub'] as $sub) {
-                                    if ($alt['c11'] == $sub['id_sub']) {
-                                        echo $sub['bobot_sub'];
-                                    }
-                                } ?>
-                            </td>
-                            <td scope="row">
-                                <?php foreach ($data['sub'] as $sub) {
-                                    if ($alt['c12'] == $sub['id_sub']) {
-                                        echo $sub['bobot_sub'];
-                                    }
-                                } ?>
-                            </td>
+                            <th class="py-2"><?= "A$i"; ?></th>
+                            <td><?= $alt['nama']; ?></td>
+
+                            <?php for ($c=1; $c <= $data['jmlKriteria']; $c++) { ?>
+                                <td class="text-center">
+                                    <?php foreach ($data['sub'] as $sub) { 
+                                        if ($alt["c$c"] == $sub['id_sub']) {
+                                            echo $sub['bobot_sub'];
+                                        }
+                                    } ?>
+                                </td>
+                            <?php } ?>
                         </tr>
                     <?php $i++; endforeach; ?>
                 </tbody>
-
             </table>
         </div>
 

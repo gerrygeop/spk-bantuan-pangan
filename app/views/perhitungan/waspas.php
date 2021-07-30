@@ -2,10 +2,10 @@
 
 <div class="container-fluid" id="perhitungan-waspas">
 
-    <nav aria-label="breadcrumb" class="ms-3">
+    <nav aria-label="breadcrumb" class="ms-1">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="<?=BASEURL;?>/perhitungan">Perhitungan</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Detail Topsis</li>
+            <li class="breadcrumb-item active" aria-current="page">Detail WASPAS</li>
         </ol>
     </nav>
 
