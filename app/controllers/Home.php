@@ -2,6 +2,8 @@
 
 class Home extends Controller {
 
+    private $jmlKriteria = 16;
+
     public function index()
     {
         $data['judul'] = 'Home';
@@ -15,7 +17,7 @@ class Home extends Controller {
     {
         $data['judul'] = 'Help';
 
-        for ($i=1; $i <= 12; $i++) { 
+        for ($i=1; $i <= $this->jmlKriteria; $i++) { 
             $data['c'.$i] = $this->model('KriteriaModel')->getSubKriteriaById($i);
         }
 

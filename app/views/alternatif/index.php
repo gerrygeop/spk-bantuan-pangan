@@ -2,8 +2,8 @@
     header('Location: '. BASEURL .'/middleware');
 } ?>
 
-<div class="">
-    <div class="py-3 rounded">
+<div>
+    <div class="p-3 mb-5">
 
         <div class="row">
             <div class="col-6">
@@ -11,136 +11,82 @@
             </div>
         </div>
 
-        <div class="px-3">
-            <div class="mb-3">
-                <h3 class="text-secondary m-0"><?= $data['judul']; ?></h3>
-                <small class="text-sm text-secondary">*Tabel ini menampilkan data calon penerima BPNT.</small>
+        <div class="row align-items-center justify-content-between">
+            <div class="col-12 col-md-6 mb-3">
+                <h2 class="text-secondary">Data calon penerima BPNT</h2>
+                <small class="text-sm fst-italic text-secondary">*Tabel ini menampilkan data calon penerima BPNT</small>
             </div>
             
-            <a href="<?= BASEURL; ?>/alternatif/create" class="btn btn-primary my-3">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg me-1" viewBox="0 0 16 16">
-                    <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"/>
-                </svg>
-                <span>Data<span>
-            </a>
+            <div class="col-12 col-md-6 text-md-end">
+                <a href="<?= BASEURL; ?>/alternatif/create" class="btn btn-warning my-3 me-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                    </svg>
+                    Tambah Data
+                </a>
+            </div>
         </div>
 
-        <div class="p-2 border border-1 rounded table-responsive">
+        <div class="p-2 bg-white border border-1 rounded table-responsive">
             <table class="table table-hover table-sm align-middle">
-                <thead class="table-light">
+                <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Nama</th>
-                        <?php for ($i=1; $i <= 16; $i++) : ?>
-                            <th scope="col">
-                                <?= 'C' . $i; ?>
+                        <th>#</th>
+                        <th>Nama</th>
+                        <?php $i=1; foreach ($data['ktr'] as $ktr) { ?>
+                            <th>
+                                <button
+                                    type="button"
+                                    class="btn btn-white btn-sm ps-0 fw-bold"
+                                    data-bs-toggle="tooltip"
+                                    data-bs-placement="top"
+                                    title="<?= $ktr['nama_ktr']; ?>"
+                                    >
+                                    <?= "C$i"; ?>
+                                </button>
                             </th>
-                        <?php endfor; ?>
-                        <th scope="col">Action</th>
+                        <?php $i++; } ?>
+                        <th>Action</th>
                     </tr>
                 </thead>
+
                 <tbody>
                     <?php $i=1; foreach ($data['alt'] as $alt) : ?>
                         <tr>
-                            <th scope="row">
-                                <?= $i; ?>
-                            </th>
-                            <td scope="row" class="col-1">
+                            <th><?= $i; ?></th>
+                            <td class="col-1">
                                 <?= $alt['nama']; ?>
                             </td>
-                            <td scope="row" class="cut-text py-3">
-                                <?php foreach ($data['sub'] as $sub) {
-                                    $alt['c1'] == $sub['id_sub'] ?  print_r($sub['nama_sub']) : 'null';
-                                } ?>
-                            </td>
-                            <td scope="row" class="cut-text py-3">
-                                <?php foreach ($data['sub'] as $sub) {
-                                    $alt['c2'] == $sub['id_sub'] ?  print_r($sub['nama_sub']) : 'null';
-                                } ?>
-                            </td>
-                            <td scope="row" class="cut-text py-3">
-                                <?php foreach ($data['sub'] as $sub) {
-                                    $alt['c3'] == $sub['id_sub'] ?  print_r($sub['nama_sub']) : 'null';
-                                } ?>
-                            </td>
-                            <td scope="row" class="cut-text py-3">
-                                <?php foreach ($data['sub'] as $sub) {
-                                    $alt['c4'] == $sub['id_sub'] ?  print_r($sub['nama_sub']) : 'null';
-                                } ?>
-                            </td>
-                            <td scope="row" class="cut-text py-3">
-                                <?php foreach ($data['sub'] as $sub) {
-                                    $alt['c5'] == $sub['id_sub'] ?  print_r($sub['nama_sub']) : 'null';
-                                } ?>
-                            </td>
-                            <td scope="row" class="cut-text py-3">
-                                <?php foreach ($data['sub'] as $sub) {
-                                    $alt['c6'] == $sub['id_sub'] ?  print_r($sub['nama_sub']) : 'null';
-                                } ?>
-                            </td>
-                            <td scope="row" class="cut-text py-3">
-                                <?php foreach ($data['sub'] as $sub) {
-                                    $alt['c7'] == $sub['id_sub'] ?  print_r($sub['nama_sub']) : 'null';
-                                } ?>
-                            </td>
-                            <td scope="row" class="cut-text py-3">
-                                <?php foreach ($data['sub'] as $sub) {
-                                    $alt['c8'] == $sub['id_sub'] ?  print_r($sub['nama_sub']) : 'null';
-                                } ?>
-                            </td>
-                            <td scope="row" class="cut-text py-3">
-                                <?php foreach ($data['sub'] as $sub) {
-                                    $alt['c9'] == $sub['id_sub'] ?  print_r($sub['nama_sub']) : 'null';
-                                } ?>
-                            </td>
-                            <td scope="row" class="cut-text py-3">
-                                <?php foreach ($data['sub'] as $sub) {
-                                    $alt['c10'] == $sub['id_sub'] ?  print_r($sub['nama_sub']) : 'null';
-                                } ?>
-                            </td>
-                            <td scope="row" class="cut-text py-3">
-                                <?php foreach ($data['sub'] as $sub) {
-                                    $alt['c11'] == $sub['id_sub'] ?  print_r($sub['nama_sub']) : 'null';
-                                } ?>
-                            </td>
-                            <td scope="row" class="cut-text py-3">
-                                <?php foreach ($data['sub'] as $sub) {
-                                    $alt['c12'] == $sub['id_sub'] ?  print_r($sub['nama_sub']) : 'null';
-                                } ?>
-                            </td>
-                            <td scope="row" class="cut-text py-3">
-                                <?php foreach ($data['sub'] as $sub) {
-                                    $alt['c13'] == $sub['id_sub'] ?  print_r($sub['nama_sub']) : 'null';
-                                } ?>
-                            </td>
-                            <td scope="row" class="cut-text py-3">
-                                <?php foreach ($data['sub'] as $sub) {
-                                    $alt['c14'] == $sub['id_sub'] ?  print_r($sub['nama_sub']) : 'null';
-                                } ?>
-                            </td>
-                            <td scope="row" class="cut-text py-3">
-                                <?php foreach ($data['sub'] as $sub) {
-                                    $alt['c15'] == $sub['id_sub'] ?  print_r($sub['nama_sub']) : 'null';
-                                } ?>
-                            </td>
-                            <td scope="row" class="cut-text py-3">
-                                <?php foreach ($data['sub'] as $sub) {
-                                    $alt['c16'] == $sub['id_sub'] ?  print_r($sub['nama_sub']) : 'null';
-                                } ?>
-                            </td>
 
-                            <td scope="row" class="col-1 text-center">
-                                <a href="<?= BASEURL; ?>/alternatif/edit/<?= $alt['id_alt']; ?>" class="btn btn-primary btn-sm pt-0" title="Edit">
+                            <?php for ($c=1; $c <= $data['jmlKriteria']; $c++) { ?>
+                                <td class="cut-text py-3">
+                                    <?php foreach ($data['sub'] as $sub) {
+                                        $alt["c$c"] == $sub['id_sub'] ?  print_r($sub['nama_sub']) : 'null';
+                                    } ?>
+                                </td>
+                            <?php } ?>
+
+                            <td class="text-center">
+                                <a
+                                    href="<?= BASEURL; ?>/alternatif/edit/<?= $alt['id_alt']; ?>"
+                                    class="btn btn-primary btn-sm pt-0"
+                                    title="Edit"
+                                >
                                     <i class="bi bi-pencil-square"></i>
                                 </a>
 
-                                <form action="<?= BASEURL; ?>/alternatif/delete/<?= $alt['id_alt']; ?>" method="POST" class="d-inline">
-                                    <button class="btn btn-danger btn-sm pt-0" onclick="return confirm('Yakin?');">
+                                <form action="<?= BASEURL; ?>/alternatif/delete/<?= $alt['id_alt']; ?>" method="POST" class="">
+                                    <button
+                                        class="btn btn-danger btn-sm pt-0"
+                                        onclick="return confirm('Yakin?');"
+                                    >
                                         <i class="bi bi-trash"></i>
                                     </button>
                                 </form>
                             </td>
                         </tr>
+
                     <?php $i++; endforeach; ?>
                 </tbody>
             </table>

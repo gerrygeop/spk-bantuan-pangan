@@ -16,6 +16,20 @@ class Perhitungan extends Controller {
         $this->view('templates/footer');
     }
 
+    public function rank()
+    {
+        $bobot['alt'] = $this->model('AlternatifModel')->getAllAlternatif();
+        $bobot['sub'] = $this->model('KriteriaModel')->getAllSubKriteria();
+        $bobot['nilai'] = $this->model('KriteriaModel')->getNilaiKriteria();
+
+        $data['wp'] = $this->model('PerhitunganModel')->hitungWP($bobot);
+        $data['judul'] = 'Perhitungan';
+        
+        $this->view('templates/header', $data);
+        $this->view('perhitungan/rank', $data);
+        $this->view('templates/footer');
+    }
+
     public function waspas()
     {
         $bobot['alt'] = $this->model('AlternatifModel')->getAllAlternatif();

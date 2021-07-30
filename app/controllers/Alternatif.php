@@ -2,11 +2,17 @@
 
 class Alternatif extends Controller {
 
+    private $jmlKriteria = 16;
+
     public function index()
     {
         $data['judul'] = 'Alternatif';
         $data['alt'] = $this->model('AlternatifModel')->getAllAlternatif();
         $data['sub'] = $this->model('KriteriaModel')->getAllSubKriteria();
+        $data['ktr'] = $this->model('KriteriaModel')->getAllKriteria();
+        
+        $kriteria = count($data['ktr']);
+        $data['jmlKriteria'] = $kriteria;
 
         $this->view('templates/header', $data);
         $this->view('alternatif/index', $data);
@@ -16,8 +22,9 @@ class Alternatif extends Controller {
     public function create()
     {
         $data['judul'] = 'Alternatif';
+        $data['kriteria'] = $this->model('KriteriaModel')->getAllKriteria();
 
-        for ($i=1; $i <= 12; $i++) { 
+        for ($i=1; $i <= $this->jmlKriteria; $i++) { 
             $data['c'.$i] = $this->model('KriteriaModel')->getSubKriteriaById($i);
         }
         
@@ -43,8 +50,9 @@ class Alternatif extends Controller {
     {
         $data['judul'] = 'Alternatif';
         $data['alt'] = $this->model('AlternatifModel')->getAlternatifById($id);
+        $data['kriteria'] = $this->model('KriteriaModel')->getAllKriteria();
 
-        for ($i=1; $i <= 12; $i++) { 
+        for ($i=1; $i <= $this->jmlKriteria; $i++) { 
             $data['c'.$i] = $this->model('KriteriaModel')->getSubKriteriaById($i);
         }
 
