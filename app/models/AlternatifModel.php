@@ -5,6 +5,11 @@ class AlternatifModel {
     private $table = 'alternatif';
     private $db;
 
+    private $kriteria;
+    private $updateKriteria;
+    private $values;
+    private $jmlKriteria = 16;
+
     public function __construct()
     {
         $this->db = new Database;
@@ -26,13 +31,20 @@ class AlternatifModel {
 
     public function tambahAlternatif($data)
     {
-        $query = "INSERT INTO ". $this->table ." (nama, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12)
-                VALUES (:nama, :c1, :c2, :c3, :c4, :c5, :c6, :c7, :c8, :c9, :c10, :c11, :c12)";
+        for ($j=1; $j <= $this->jmlKriteria; $j++) { 
+            $this->kriteria .= "c$j, ";
+            $this->values .= ":c$j, ";
+        }
+
+        $this->kriteria = substr($this->kriteria, 0, -2);
+        $this->values = substr($this->values, 0, -2);
+
+        $query = "INSERT INTO ". $this->table ." (nama, $this->kriteria) VALUES (:nama, $this->values)";
 
         $this->db->query($query);
         $this->db->bind('nama', $data['nama']);
         
-        for ($i=1; $i <= 12; $i++) { 
+        for ($i=1; $i <= $this->jmlKriteria; $i++) { 
             $this->db->bind('c'.$i, $data['c'.$i]);
         }
 
@@ -42,15 +54,19 @@ class AlternatifModel {
 
     public function updateAlternatif($data)
     {
-        $query = "UPDATE ". $this->table ." SET 
-            nama=:nama, c1=:c1, c2=:c2, c3=:c3, c4=:c4, c5=:c5, c6=:c6, c7=:c7, c8=:c8, c9=:c9, c10=:c10, c11=:c11, c12=:c12
-            WHERE id_alt=:id";
+        for ($j=1; $j <= $this->jmlKriteria; $j++) {
+            $this->updateKriteria .= "c$j=:c$j, ";
+        }
+
+        $this->updateKriteria = substr($this->updateKriteria, 0, -2);
+
+        $query = "UPDATE ". $this->table ." SET nama=:nama, $this->updateKriteria WHERE id_alt=:id";
 
         $this->db->query($query);
         $this->db->bind('id', $data['id_alt']);
         $this->db->bind('nama', $data['nama']);
 
-        for ($i=1; $i <= 12; $i++) { 
+        for ($i=1; $i <= $this->jmlKriteria; $i++) { 
             $this->db->bind('c'.$i, $data['c'.$i]);
         }
 
