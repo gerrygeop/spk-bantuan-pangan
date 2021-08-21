@@ -1,4 +1,14 @@
-<?php $jmlAlternatif = count($data['wp']['rankWp']); ?>
+<?php
+    if (!isset($_SESSION['user_id'])) {
+        header('Location: '. BASEURL .'/middleware');
+        exit;
+    }
+    if ($_SESSION['user_role'] != 'superadmin') {
+        header('Location: '. BASEURL .'/middleware/checkout');
+        exit;
+    }
+    $jmlAlternatif = count($data['wp']['rankWp']);
+?>
 
 <div class="container-fluid" id="perhitungan-waspas">
 

@@ -28,7 +28,6 @@ class UserModel {
         $this->db->bind('username', $username);
 
         $row = $this->db->single();
-        // die(var_dump($row));
         $hashPassword = $row['password'];
 
         if (password_verify($password, $hashPassword)) {

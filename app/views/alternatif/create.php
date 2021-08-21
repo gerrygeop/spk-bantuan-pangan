@@ -1,13 +1,18 @@
 <?php
+    if (!isset($_SESSION['user_id'])) {
+        header('Location: '. BASEURL .'/middleware');
+        exit;
+    }
+    if ($_SESSION['user_role'] != 'superadmin') {
+        header('Location: '. BASEURL .'/middleware/checkout');
+        exit;
+    }
+    
     $namaKriteria=[];
     foreach ($data['kriteria'] as $key => $value) {
         $namaKriteria[] = $value['nama_ktr'];
     }
     $jmlKriteria = count($namaKriteria);
-
-    if (!isset($_SESSION['user_id'])) {
-        header('Location: '. BASEURL .'/middleware');
-    }
 ?>
 
 <div class="container px-5 py-3 mb-5 bg-white shadow-sm border rounded">
@@ -45,129 +50,6 @@
                         </select>
                     </div>
                 <?php } ?>
-
-                <!-- 
-                    <div class="col-12">
-                        <label for="c2" class="form-label text-secondary">Status Bangunan [C2]</label>
-                        <select class="form-select" name="c2">
-                            <?php foreach ($data['c2'] as $key) : ?>
-                                <option value="<?= $key['id_sub'] ?>">
-                                    <?= $key['nama_sub']; ?>
-                                </option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-
-                    <div class="col-12">
-                        <label for="c3" class="form-label text-secondary">Umur Kepala Keluarga [C3]</label>
-                        <select class="form-select" name="c3">
-                            <?php foreach ($data['c3'] as $key) : ?>
-                                <option value="<?= $key['id_sub'] ?>">
-                                    <?= $key['nama_sub']; ?>
-                                </option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-
-                    <div class="col-12">
-                        <label for="c4" class="form-label text-secondary">Pendidikan Kepala Keluarga [C4]</label>
-                        <select class="form-select" name="c4">
-                            <?php foreach ($data['c4'] as $key) : ?>
-                                <option value="<?= $key['id_sub'] ?>">
-                                    <?= $key['nama_sub']; ?>
-                                </option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-
-                    <div class="col-12">
-                        <label for="c5" class="form-label text-secondary">Jenis Lantai [C5]</label>
-                        <select class="form-select" name="c5">
-                            <?php foreach ($data['c5'] as $key) : ?>
-                                <option value="<?= $key['id_sub'] ?>">
-                                    <?= $key['nama_sub']; ?>
-                                </option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-
-                    <div class="col-12">
-                        <label for="c6" class="form-label text-secondary">Jenis Dinding [C6]</label>
-                        <select class="form-select" name="c6">
-                            <?php foreach ($data['c6'] as $key) : ?>
-                                <option value="<?= $key['id_sub'] ?>">
-                                    <?= $key['nama_sub']; ?>
-                                </option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-
-                    <div class="col-12">
-                        <label for="c7" class="form-label text-secondary">Jenis Atap [C7]</label>
-                        <select class="form-select" name="c7">
-                            <?php foreach ($data['c7'] as $key) : ?>
-                                <option value="<?= $key['id_sub'] ?>">
-                                    <?= $key['nama_sub']; ?>
-                                </option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-
-                    <div class="col-12">
-                        <label for="c8" class="form-label text-secondary">Sumber Air Minum [C8]</label>
-                        <select class="form-select" name="c8">
-                            <?php foreach ($data['c8'] as $key) : ?>
-                                <option value="<?= $key['id_sub'] ?>">
-                                    <?= $key['nama_sub'] ?>
-                                </option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-
-                    <div class="col-12">
-                        <label for="c9" class="form-label text-secondary">Sumber Penerangan [C9]</label>
-                        <select class="form-select" name="c9">
-                            <?php foreach ($data['c9'] as $key) : ?>
-                                <option value="<?= $key['id_sub']; ?>">
-                                    <?= $key['nama_sub']; ?>
-                                </option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-
-                    <div class="col-12">
-                        <label for="c10" class="form-label text-secondary">Bahan Bakar Memasak [C10]</label>
-                        <select class="form-select" name="c10">
-                            <?php foreach ($data['c10'] as $key) : ?>
-                                <option value="<?= $key['id_sub'] ?>">
-                                    <?= $key['nama_sub'] ?>
-                                </option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-
-                    <div class="col-12">
-                        <label for="c11" class="form-label text-secondary">Pekerjaan Kepala Keluarga [C11]</label>
-                        <select class="form-select" name="c11">
-                            <?php foreach ($data['c11'] as $key) : ?>
-                                <option value="<?= $key['id_sub'] ?>">
-                                    <?= $key['nama_sub']; ?>
-                                </option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-
-                    <div class="col-12">
-                        <label for="c12" class="form-label text-secondary">Jumlah Aset [C12]</label>
-                        <select class="form-select" name="c12">
-                            <?php foreach ($data['c12'] as $key) : ?>
-                                <option value="<?= $key['id_sub'] ?>">
-                                    <?= $key['nama_sub']; ?>
-                                </option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                -->
 
             </div>
     

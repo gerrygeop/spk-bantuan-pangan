@@ -97,7 +97,6 @@ class PerhitunganModel{
         }
         
         // die("<pre>". print_r($rank, 1) ."</pre>");
-        // echo "<pre>". print_r($rank, 1) ."</pre>";
         
         $data['rankWp'] = $rank;
         return $data;
@@ -150,7 +149,6 @@ class PerhitunganModel{
             $R[] = max($nilaiAlt);
             unset($nilaiAlt);
         }
-
 
         /* Menghitung Nilai Vikor */
         $_s_max_kurang_min = max($S) - min($S);

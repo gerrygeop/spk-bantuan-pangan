@@ -1,3 +1,14 @@
+<?php 
+    if (!isset($_SESSION['user_id'])) {
+        header('Location: '. BASEURL .'/middleware');
+        exit;
+    }
+    if ($_SESSION['user_role'] != 'superadmin') {
+        header('Location: '. BASEURL .'/middleware/checkout');
+        exit;
+    }
+?>
+
 <div class="container py-3">
 
     <div class="row align-items-center justify-content-between mb-3 mb-md-0">

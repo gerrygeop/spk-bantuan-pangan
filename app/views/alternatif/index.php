@@ -1,6 +1,13 @@
-<?php if (!isset($_SESSION['user_id'])) {
-    header('Location: '. BASEURL .'/middleware');
-} ?>
+<?php 
+    if (!isset($_SESSION['user_id'])) {
+        header('Location: '. BASEURL .'/middleware');
+        exit;
+    }
+    if ($_SESSION['user_role'] != 'superadmin') {
+        header('Location: '. BASEURL .'/middleware/checkout');
+        exit;
+    }
+?>
 
 <div>
     <div class="p-3 mb-5">

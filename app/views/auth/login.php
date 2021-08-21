@@ -1,6 +1,9 @@
-<?php if (isset($_SESSION['user_id'])) {
-    header('Location: '. BASEURL .'/middleware/checkout');
-} ?>
+<?php 
+    if (isset($_SESSION['user_id'])) {
+        header('Location: '. BASEURL .'/middleware/notify');
+        exit;
+    }
+?>
 
 <div class="container">
     <div class="row">

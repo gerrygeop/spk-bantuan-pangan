@@ -4,20 +4,25 @@ class Middleware extends Controller {
 
     public function index()
     {
-        $data['judul'] = '401';
+        $data['judul'] = 'Login';
 
         $this->view('templates/header', $data);
-        $this->view('templates/401');
+        $this->view('auth/login');
+        $this->view('templates/footer');
+    }
+
+    public function notify()
+    {
+        $data['judul'] = 'What';
+
+        $this->view('templates/header', $data);
+        $this->view('templates/notify');
         $this->view('templates/footer');
     }
 
     public function checkout()
     {
-        $data['judul'] = '202';
-
-        $this->view('templates/header', $data);
-        $this->view('templates/202');
-        $this->view('templates/footer');
+        $this->view('templates/404');
     }
 
 }
