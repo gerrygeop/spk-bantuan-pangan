@@ -3,13 +3,13 @@
 /*
  * @Laragon
  */
-define('BASEURL', 'http://bantuan-pangan.test');
+define('BASEURL', 'http://bantuan-pangan-lutfi.test');
 
 
 /*
  * @XAMPP
  */
-// define('BASEURL', 'http://localhost/bantuan-pangan/public');
+// define('BASEURL', 'http://localhost/bantuan-pangan-lutfi/public');
 
 
 /*

@@ -16,9 +16,9 @@
         </div>
     </div>
 
-    <div class="row my-5 px-3 py-5 bg-white border rounded">
-        <div class="col">
-            <p class="lh-lg">&emsp;&emsp;Bantuan Pangan Non Tunai (BPNT) adalah bantuan sosial pangan dalam bentuk non tunai dari pemerintah yang diberikan kepada KPM setiap bulannya melalui mekanisme akun elektronik yang digunakan hanya untuk membeli bahan pangan di pedagang bahan pangan/e-warong yang bekerjasama dengan bank.</p>
-        </div>
+    <div class="my-5 px-3 py-5 bg-white border rounded">
+        <p class="lh-lg text-justify">
+            Bantuan Pangan Non Tunai (BPNT) adalah bantuan sosial pangan dalam bentuk non tunai dari pemerintah yang diberikan kepada KPM setiap bulannya melalui mekanisme akun elektronik yang digunakan hanya untuk membeli bahan pangan di pedagang bahan pangan/e-warong yang bekerjasama dengan bank.
+        </p>
     </div>
 </div>
